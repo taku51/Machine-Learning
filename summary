@@ -42,9 +42,11 @@ p(omega) = 1
 
 Discrete vs Continuous:
 
-Discrete:
+Discrete (Described by probability mass function):
 
-Bernoulli
+Bernoulli : success or failure based on probability density function
+
+Based on probability mass function:
 
 Binomial
 
@@ -53,18 +55,19 @@ Multinomial
 Poisson
 
 
-Continuous:
+Continuous (Described by probability density function):
 
 Uniform
 
-Normal
+Normal (Probability distribution over all the real numbers, described by a mean and a variance) 
 
-Laplace
+Laplace 
 
 Gamma
 
 Beta
 
-Dirichlet
+Dirichlet (Sampling from the space of real numbers. Instead it is sampling over a probability simplex)
+Probability Simplex : a bunch of numbers that add up to 1
 
 
