@@ -1,6 +1,6 @@
 Week1
 
-Supervised vs Unsupervised
+Supervised (labeled) vs Unsupervised (unlabled)
 
 Supervised Learner
 Train Data -> Learner
@@ -8,5 +8,11 @@ Train Data -> Learner
 Test Data & Learner -> Model
 
 Test Data & Model -> Evaluation
+
+Evaluation (Supervised):
+
+Pick an evaluation metric comparing label vs prediction
+
+When data is poor, cross-validate
 
 
