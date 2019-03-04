@@ -13,6 +13,15 @@ Evaluation (Supervised):
 
 Pick an evaluation metric comparing label vs prediction
 
+Metrics:
+Accuracy, Contingency Table (Correlation), Precision-Recall, ROC curves
+
+Accuracy = True Positive/Actual Results or True Positive/(True Positive + False Positive)
+True Positive & False Positive: when the actual result and predicted value match
+
+
 When data is poor, cross-validate
+
+
 
 
