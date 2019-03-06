@@ -24,6 +24,8 @@ When data is poor, cross-validate
 
 Knowledge Technologies (matching data, databases) vs Machine Learning (predicting based on models, AI)
 
+-------------------------------------------------------------------------
+
 3 models
 Linear
 
@@ -35,10 +37,14 @@ Probability
 
 Fi = null
 
+-------------------------------------------------------------------------
+
 Axioms:
 p(f) >= for every even f in F
 
 p(omega) = 1
+
+-------------------------------------------------------------------------
 
 Discrete vs Continuous:
 
@@ -69,5 +75,25 @@ Beta
 
 Dirichlet (Sampling from the space of real numbers. Instead it is sampling over a probability simplex)
 Probability Simplex : a bunch of numbers that add up to 1
+
+
+-------------------------------------------------------------------------
+
+Expectation E[X] is the X's average value.
+
+Discrete: E[x] = Sigma x P(X=x) -> sum of the plobabilities where the expectation matches the variables
+Continuous: E[x] = integral x p(x) dx -> since it's continuous, takes the area that the variable creates.
+
+Properties:
+Expectation is only effective on variables with X.
+Linear:E[aX + b] = aE[X] + b
+       E[X + Y] = E[X] + E[Y]
+
+If X is greater than Y, then the expectations will have the same innequality relationship
+Monotone: X >= Y -> E[X] >= E[Y]
+
+Variance: Var(X) = E[(X - E[X])^2]
+
+
 
 
