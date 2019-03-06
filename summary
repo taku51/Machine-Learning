@@ -95,5 +95,33 @@ Monotone: X >= Y -> E[X] >= E[Y]
 Variance: Var(X) = E[(X - E[X])^2]
 
 
+-------------------------------------------------------------------------
 
+Independence and Conditioning
 
+-> = is a subset of 
+
+X, Y are independent if 
+P(X -> A, Y -> B) = P(X -> A) P(Y -> B)
+Same for densities.
+
+Intuitively: knowing value of Y reveals nothing about X
+
+Algebraically: the joint on X,Y factorises!
+
+Cond Prob
+P(A|B) = P(A n B) / P(B)
+Same for densities.
+
+-------------------------------------------------------------------------
+
+Inverting Conditioning: Bayes' Theorem
+
+P(AnB) = P(A|B) P(B) = P(B|A) P(A)
+(A given B) times B -> There's B known and A, times B implies given B doesn't matter.
+
+P(A|B) = (p(B|A) p(A))/P(B)
+
+Bayesian Stat Inference
+Marginals: prob of individual vars
+Marginalisation: summing away all
