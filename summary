@@ -52,26 +52,13 @@ Discrete (Described by probability mass function):
 
 Bernoulli : success or failure based on probability density function
 
-Based on probability mass function:
-
-Binomial
-
-Multinomial
-
-Poisson
-
-
 Continuous (Described by probability density function):
 
-Uniform
+Uniform (Rectangular one)
 
 Normal (Probability distribution over all the real numbers, described by a mean and a variance) 
 
-Laplace 
-
-Gamma
-
-Beta
+Laplace (difference between two independent variates)
 
 Dirichlet (Sampling from the space of real numbers. Instead it is sampling over a probability simplex)
 Probability Simplex : a bunch of numbers that add up to 1
