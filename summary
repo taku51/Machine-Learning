@@ -112,3 +112,32 @@ P(A|B) = (p(B|A) p(A))/P(B)
 Bayesian Stat Inference
 Marginals: prob of individual vars
 Marginalisation: summing away all
+
+-------------------------------------------------------------------------
+
+Instance is a row, and attribute is a column
+
+Classification -> supervised. Set of classified training data.  Measure success on test data.
+
+Clustering -> unsupervised. Without training data.  Success measured subjectively.
+Grouping similar items.  Dynamically discover the classes (strong).  Categorise instances as certain lables without preclassified data (weak)
+
+Regression -> Classification learning, but class is continuous (numeric prediction)
+supervised. In classification, always map an instance to the correct label.  In regression, not sure if it's correct
+but accept close values.
+
+Association -> detect useful patterns among sets of items, potentially many association rules.
+
+-------------------------------------------------------------------------
+
+Nominal -> {sunny,overcast,rainy} serve only as labels or names, categorical, discrete, only equality tests
+, nominal and ordinal are not always clear in distinction
+
+Ordinal -> explicit order is imposed on the values, hot > mild > cool
+
+Continuous -> maths allowed, attribute distance.
+
+-------------------------------------------------------------------------
+
+
+
