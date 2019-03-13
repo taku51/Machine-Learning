@@ -161,6 +161,19 @@ or mathematical.
 A model is an artificial construction where all extraneous detail
 has been removed or abstracted.
 
+to produce
+• A mathematical function that approximates a set of
+observations (and can be estimated from data).
+
+There is a trade-off in modelling between simplicity and
+accuracy.
+
+A probability model predicts the relative frequency of each event
+if the experiment is performed a large number of times. It
+captures a theoretical probability
+
+-------------------------------------------------------------------------
+
 
 
 
