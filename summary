@@ -139,5 +139,28 @@ Continuous -> maths allowed, attribute distance.
 
 -------------------------------------------------------------------------
 
+Binomial Dist (yes or no, two outcomes):
+B(m; n, p) = (n/m) p^m (1 − p)^(n−m)
+=n! / m!((n − m)!)p^m(1 − p)
+
+Intuition: we want exactly m successes (p ^ m) and n - m failures
+
+Multinomai Dist:
+More than two outcome but the same as binomial
+
+Entropy (predictability)
+
+A high entropy value means x is unpredictable
+
+-------------------------------------------------------------------------
+
+A model is our attempt to understand and represent the nature
+of reality through a particular lens, be it architectural, biological,
+or mathematical.
+
+A model is an artificial construction where all extraneous detail
+has been removed or abstracted.
+
+
 
 
