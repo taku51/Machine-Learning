@@ -174,6 +174,60 @@ captures a theoretical probability
 
 -------------------------------------------------------------------------
 
+Probablistic Learner
+
+Build a model of the training data, and use that to predict the class labels of the test data.
+
+the result goes to the majority
+
+Conditional independence assumption: each probability is independent but false in almost every dataset.
+
+Multiply all cond prob and prob itself to get naive bayes.
+e.g. Is Bob more likely to have a cold
+Cold * Headache severe given cold * ....
+
+P(C) * P(H=s|C)
+In case there are 0s, maintain a prob dist 
+Replace zero with a trivially small non-zero, epsilon.
+
+Less than 1/n for n instances.
+Assume (1+e) ,=, 1
+
+Unseen events (events that are not taken into account) get a count of 1
+
+1 becomes 2, 2 becomes 3
+If a few instaces, it's gonna change the result but fine with big data.
+
+-> Laplace smoothing or add-one smoothing (most common, reasonably accurate)
+-> overestimate the liklihood of unseen events
+
+Add-k smoothing: like laplace but instead of adding 1 to all counts, add k < 1
+
+Good-Turing estimation: uses number of sigletons to estimate numer of unseen events; counts are progressibely adjusted
+
+Regression: leads to a more complicated learner
+
+-------------------------------------------------------------------------
+
+Why does Baives Bayes work
+-> don't need a correct estimate of P(C|T): only need to know which cj is the greatest
+
+-> Robut to two common errors:
+       overestimated some, but some underestimated as well
+       marginally relevant atts are correlated.
+       
+-> works well with large datasets
+-> many application areas
+-> easy to explain
+
+Processing dict, slow way sum the entries in the dict
+
+Fastway: read off the class array
+
+Things to do: if value is 0, replace with epsilion
+
+-------------------------------------------------------------------------
 
 
+-------------------------------------------------------------------------
 
