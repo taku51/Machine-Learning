@@ -228,6 +228,138 @@ Things to do: if value is 0, replace with epsilion
 
 -------------------------------------------------------------------------
 
+Classification:
+-> Supervised
+Input: set of labelled training instances; set of unlabelled test instnces
+
+Output: prediction
+
+Good classifier
+-> good accuracy -> number of correctly labelled test instances/ total of test instances
+
+Use all of the instanes as training data
+       - Build the classifier using all of the instances
+       - use all the same instances as test data
+
+Testing on the training data is not good
+
+Each instance is randomly assigned as either a training instance or a testing instance.
+
+Effectively partitioned, no overlap between datasets.
+
+Typically: 50-50, 80-20, 90-10
+
+Advantages:
+Simple tow work with and implement
+High reproducibility
+
+Disadv:
+       Lots of test instances: learner doesn't have enough info
+       lot s of training instances: test data might not be representative.
+       
+Repeated random subsampling: randomly chosen each time, size of training set is fixed across iterations
+
+Evaluate by averaging across the iterations.
+
+Adv:
+       more reliable
+Disadv:
+       More difficult to reproduce
+       slower than holdout
+       Wrong choice of training set size can lead to misleading res
+       
+Cross Valiation:
+       Progressively split into a number of partitions m >= 2
+       
+       iteratively
+              one partition is used as test data
+              the other m -1 partitions are used as training data
+       Eval:
+              Averaging
+
+Similar to testing on the training data, but as partition no dataset overlap
+Same amout of time as repeated roughly
+reproducible
+minimise bias and variance of the classifier's perfo
+
+m size?
+Folds: impacts runtime and datasets
+Feler folds: more instances per partition, more variance in perfo
+
+More folds: fewer instances per partition, less variance but slower
+
+Commonly: m = 10
+Far too slow to use in practice
+
+
+-------------------------------------------------------------------------
+
+Inductive learning hypo:
+Hypothesis found to approximate the target function well over training set will also appromimate the 
+well over unseen test examples
+
+
+MLers suffer from inductive bias:
+       - different assumptions lead to diff predic
+       - can only sensibly criticise assumptions with respect to actual data (empirical problem)
+The only way to minimise bias is to know what the unseen dataset will look like.
+
+Assume an interesting class and an uninteresting class:
+Classifier
+       - Insteresting True positive
+       - Interesting False Negative
+       - Uninteresting False Positive
+       - Uninteresting True Negative
+       
+Precision: how often correct when predicting an instance is interesting
+TP / (TP + FP)
+
+Recall: What proportion of the truly interesting instances we correctly identified as interesting
+TP / (TP + FN)
+
+FN is something that is mistakenly labelled as negative
+
+-------------------------------------------------------------------------
+
+Precision/Recall -> inverse relo(
+Classifer -> high precision but low recall
+Classifier -> high recall but low precision
+
+We want both to be high:
+F-score to evaluate this
+
+F = ((1 + B^2) PR)/ ((B^2) P) + R))
+B= 1
+F = 2PR/ (P+R)
+
+High recall, high precision would look similar to accuracy
+
+Precision/Recall/F-score are all calculated per-class, and must be averaged across c classes:
+
+Micro averaging 
+
+Precision = summation of class precision / # of class
+Recall = summation of recall / # of class
+
+Diff occur when don't know is permitted as a prediction:
+
+Small ones can occure depending on when averagin takes place
+
+
+
+-------------------------------------------------------------------------
+
+
+
+
+-------------------------------------------------------------------------
+
+
+
+
+-------------------------------------------------------------------------
+
+
 
 -------------------------------------------------------------------------
 
