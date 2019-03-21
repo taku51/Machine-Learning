@@ -343,12 +343,190 @@ Recall = summation of recall / # of class
 
 Diff occur when don't know is permitted as a prediction:
 
-Small ones can occure depending on when averagin takes place
+Small ones can occur depending on when averagin takes place
+
+-------------------------------------------------------------------------
+
+Decision Tree
+
+Baseline -> expect any reasonabbly well-developed method to better, at least acceptable.
+e.g. for a novice marathoner, the time to walk is 42km
+
+Benchmark -> established rival technique which we are pitching our method against
+e.g. for a marathon runner, the time of our last marathon run/ the world record time/ 3 hours
+
+Baseline is used for both meanings.
+
+Baselines are important in establishing whether any proposed method is doing better than dumb and simple
+       dumb methods often work surprisingly well
+       
+Baselines are valuable in getting a sense for the intrinsic difficulty of a given task (accuracy = 5% vs 99%))
+
+Random Baseline:
+Method 1: randomly assign a class to each test instance
+       - Often the only option in unsupervised/semi-supervised contexts
+
+Method 2: randomly assign a class ck to each test instance, weighting the class assignment according to P(ck)
+
+       Assumes we know the class prior probabilities
+       Alleviate effects of variance by:
+              running method N times and calculating the mean accuracy
+                     or
+              arriving at a deterministic estimate of the accuracy of random assignment
+              
+Zero-R
+
+method: classify all instances according to the most common class in the training data
+
+The most commonly used baseline in machine learning
+Known as majority class baseline
+Inappropriate if the majority is false and the learning task is to identify needles in the hystack.
+
+One-R One rule
+Creates one rule for each attribute in the training data, then selects the rule with the smallest error rate as its one rule
+Method: create a decision stump for each attribute, with branches for each value, and populate the leaf with the majority class 
+at that leaf; select the decision stump which leads to the lowest error rate over the training data.
+
+One-R Pseudo
+For each att,
+       for each value of the attribute, make a rule:
+              count how often each class appears
+              find the most frequent class
+              make the rule assign that class to this value
+calculate the error rate of the rules
+Choose the attribute whose rules produce the smallest error rate.
+
+
+Reflections:
+
+Adv:
+        simple to undestand and implement
+        good results
+Disadv:
+       unable to capture attribute interactions
+       bias towards high-arity attributes (attributes with many possible values)
+       
+       
+-------------------------------------------------------------------------
+
+Construct decision trees:
+
+Basic method: construct decision trees in recursive
+divide-and-conquer fashion
+
+Having constructed the decision tree, we classify novel instances
+by traversing down the tree and classifying according to the label
+at the deepest reachable point in the tree structure (leaf).
+
+Complications:
+       unobserved attribute-value pairs
+       missing vaue
+       
+Decision Trees can be read as a disjunction; for example, Yes:
+(outlook = sunny ∧ humidity = normal)
+∨(outlook = overcast)
+∨(outlook = rainy ∧ windy = false)       
+
+We want to get the smallest tree (Occam’s Razor;
+generalisability). Prefer the shortest hypothesis that fits the data.
+In favor:
+• Fewer short hypotheses than long hypotheses
+• a short hyp. that fits the data unlikely to be a coincidence
+• a long hyp. that fits data might be a coincidence
+Against:
+• Many ways to define small sets of hypotheses
+
+
+-------------------------------------------------------------------------
+
+Information Gain
+
+• The expected reduction in entropy caused by knowing the
+value of an attribute.
+• Compare:
+• the entropy before splitting the tree using the attribute’s
+values
+• the weighted average of the entropy over the children after
+the split (Mean Information)
+• If the entropy decreases, then we have a better tree (more
+predictable)
+
+
+-------------------------------------------------------------------------
+
+Mean Info(x1, .., xm) = Sigma
+P(xi)H(xi)
+
+pribability times entropy
+
+IG(RA|R) = H(R) − sigma P(xi)H(xi)
+
+Prefer higher branch attributes
+
+Information gain tends to prefer highly-branching attributes:
+
+• A subset of instances is more likely to be homogeneous (all
+of a single class) if there are only a few instanes
+• Attribute with many values will have fewer instances at
+each child node
+
+Solution: Gain Ratio
+
+Gain ratio (GR) reduces the bias for information gain
+towards highly-branching attributes by normalising relative
+to the split information
+
+Split info (SI) is the entropy of a given split (evenness of
+the distribution of instances to attribute values)
+
+-> being higher doesn't matter
+
+• Split Info sometimes called Intrinsic Value
+• Discourages the selection of attributes with many uniformly
+distributed values
+
+We recurse until the instances at a node are of the same
+class
+
+This is consistent with our usage of entropy: if all of the
+instances are of a single class, the entropy of the
+distribution is 0
+
+Considering other attributes cannot “improve” an entropy of
+0 — the Info Gain is 0 by definition
+
+The Info Gain/Gain Ratio allows us to choose the
+(seemingly) best attribute at a given node
+
+However, it is also an approximate indication of how much
+absolute improvement we expect from partitioning the data
+according to the values of a given attribute
+
+An Info Gain of 0 means that there is no improvement; a
+very small improvement is often unjustifiable
+
+Typical modification of ID3: choose best attribute only if
+IG/GR is greater than some threshold τ
+
+Other similar approaches use pruning — post-process the
+tree to remove undesirable branches (with few instances, or
+small IG/GR improvements)
+
+Fall back to majority class label for instances at a leaf with
+a mixed distribution — unclear what to do with ties
+
+Possibly can be taken as evidence that the given attributes
+are insufficient for solving the problem
+
+-------------------------------------------------------------------------
 
 
 
 -------------------------------------------------------------------------
 
+
+
+-------------------------------------------------------------------------
 
 
 
