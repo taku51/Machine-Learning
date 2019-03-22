@@ -32,6 +32,8 @@ There are 3 such instances (A,B,andC) Of just these three instances, how many ha
 Outl as s? 2 (A and B), so the required probability is 2 .
 
 2. Ensure that you can derive the Naive Bayes formulation.
+Predicting Play, which has categorical values Yes and No
+
 a = attribute
 c = class
 c = N/Y (class = yes/no)
@@ -40,8 +42,6 @@ P(Yes) and P(No)
 
 P(Yes) * P(a|Y)
 = P(Y) P(O = a | Y) P(temp = m | Y)...
-
-
 
 P(c) * P(a|c)
 
@@ -60,19 +60,42 @@ the proportion which had that attribute value. For example, P (Outl=s|N) = 2/3 ;
 
 We classify a test instance T by calculating “probabilities” for each class, as follows: (They aren’t truly probabilities.)
 
+Play = No
+Given outlook = 0, play become No probability...
+These o, m , n, T come from the row or instance that we want to predict.
+Given is the former one.
+
 No : P(No)P(Outl=o|No)P(Temp=m|No)P(Humi=n|No)P(Wind=T|No)
 = 3/6 × 0/3 × 0/3 × 2/3 × 2/3
 
 Yes : P(Yes)P(Outl=o|Yes)P(Temp=c|Yes)P(Humi=n|Yes)P(Wind=T|Yes) = 3/6 × 1/3 × 1/3 × 1/3 × 0/3
 
+One with the higher probability is the answer.
+
+Using epsilons:
+No: 2/9 * e^2
+Yes: e/54
+
+Condition of the epsilon:
+n is the number of training instance
+e < 1/n = in thise case 1/6
+
 (b) Using “Laplace” smoothing.
 
+Add one to the nominators of all the probabilities except the prior probability.
+1/2 * 1/3 * 1/3 * 3/3 *  3/3
 
+Add the number of options one attribute can have to the denominators
 
+1/2 * 1/(3+3) * 1/(3+3) * 3/(3+2) *  3/(3+2)
 
+Laplace cares about all the probabilities
+Epsilon cares about the ones with 0s
 
+Laplace is better most of the times but depends on the data.
 
-
+When seeing missing values, just ignore them in the naive bayes.
+And replace them with 1s.
 
 *Notes
 
