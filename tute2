@@ -32,6 +32,19 @@ There are 3 such instances (A,B,andC) Of just these three instances, how many ha
 Outl as s? 2 (A and B), so the required probability is 2 .
 
 2. Ensure that you can derive the Naive Bayes formulation.
+a = attribute
+c = class
+c = N/Y (class = yes/no)
+
+P(Yes) and P(No)
+
+P(Yes) * P(a|Y)
+= P(Y) P(O = a | Y) P(temp = m | Y)...
+
+
+
+P(c) * P(a|c)
+
 
 3. Using the probabilistic model that you developed above, classify the test instances according to
 the method of Naive Bayes.
@@ -47,10 +60,10 @@ the proportion which had that attribute value. For example, P (Outl=s|N) = 2/3 ;
 
 We classify a test instance T by calculating “probabilities” for each class, as follows: (They aren’t truly probabilities.)
 
-N : P(N)P(Outl=o|N)P(Temp=m|N)P(Humi=n|N)P(Wind=T|N)
+No : P(No)P(Outl=o|No)P(Temp=m|No)P(Humi=n|No)P(Wind=T|No)
 = 3/6 × 0/3 × 0/3 × 2/3 × 2/3
 
-Y : P(Y)P(Outl=o|Y)P(Temp=c|Y)P(Humi=n|Y)P(Wind=T|Y) = 3/6×1/3×1/3×1/3×0/3
+Yes : P(Yes)P(Outl=o|Yes)P(Temp=c|Yes)P(Humi=n|Yes)P(Wind=T|Yes) = 3/6 × 1/3 × 1/3 × 1/3 × 0/3
 
 (b) Using “Laplace” smoothing.
 
