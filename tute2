@@ -1,0 +1,64 @@
+1. Build a probabilistic model based around the given training instances:
+(a) Calculate the prior probability P(Outl = s). Calculate the prior probabilities of the other attribute values in this data.
+Prior Prob:
+Prior Prob * Test Evid = Posterior Prob
+
+Posterior Prob:
+P(c | pos)  = P(c) * P(pos | c)
+
+-> "In what sproportion of the instances is this true" (Maximum likelihood estimation of the prob)
+e.g. P(Outl = s) = 3/6
+
+(b) Find the entropy of (the distribution of the attribute values) for each of the six attributes, given this probabilistic model.
+-> H(X) = − Sigma P(x)log2 P(x)
+
+H(Outl) = −[p(s) log2 p(s) + p(o) log2 p(o) + p(r) log2 p(r)]
+        = 1.46 bits
+
+(c) Calculate the joint probability P (Outl = s ∩ Temp = h). Calculate some other joint probabil- ities, for pairs of attribute values from different attributes.
+Joint probability -> Multiple events to happen at the same time.
+-> “what proportion of instances has both of these as true?”
+
+-> Count the number of instances that have the attribute values for Outl, 
+and h for Temp: there are 2 (A and B), so the required proability
+P(Outl=s∩Temp=h)is 2/6.
+
+(d) Calculate the posterior (or conditional) probability P (Outl = s|Temp = h). Calculate some other posterior probabilities.
+-> "what proportion of instances is the left-hand event true 
+given that the right-hand condition is true?”
+
+Given Temp is h, 
+There are 3 such instances (A,B,andC) Of just these three instances, how many have 
+Outl as s? 2 (A and B), so the required probability is 2 .
+
+2. Ensure that you can derive the Naive Bayes formulation.
+
+3. Using the probabilistic model that you developed above, classify the test instances according to
+the method of Naive Bayes.
+(a) Using the “epsilon” smoothing method.
+To build a Naive Bayes classifier, need to calculate all of the prior probabilities of the classes, 
+and all of the posterior probabilities of an attribute (value) given a class.
+
+3 of the 6 instances are Y, and 3 of the 6 instances are N, so P(Y)= 3, and the same for 6
+P(N).
+
+For the posterior probabilities, read off the instances of that class, and count
+the proportion which had that attribute value. For example, P (Outl=s|N) = 2/3 ; P (Outl=o|Y) = 1/3. 
+
+We classify a test instance T by calculating “probabilities” for each class, as follows: (They aren’t truly probabilities.)
+
+N : P(N)P(Outl=o|N)P(Temp=m|N)P(Humi=n|N)P(Wind=T|N)
+= 3/6 × 0/3 × 0/3 × 2/3 × 2/3
+
+
+Y : P(Y)P(Outl=o|Y)P(Temp=c|Y)P(Humi=n|Y)P(Wind=T|Y) = 3×1×1×1×0
+63333
+
+
+(b) Using “Laplace” smoothing.
+
+
+
+
+
+
