@@ -50,15 +50,23 @@ We classify a test instance T by calculating “probabilities” for each class,
 N : P(N)P(Outl=o|N)P(Temp=m|N)P(Humi=n|N)P(Wind=T|N)
 = 3/6 × 0/3 × 0/3 × 2/3 × 2/3
 
-
-Y : P(Y)P(Outl=o|Y)P(Temp=c|Y)P(Humi=n|Y)P(Wind=T|Y) = 3×1×1×1×0
-63333
-
+Y : P(Y)P(Outl=o|Y)P(Temp=c|Y)P(Humi=n|Y)P(Wind=T|Y) = 3/6×1/3×1/3×1/3×0/3
 
 (b) Using “Laplace” smoothing.
 
 
 
+
+
+
+
+
+*Notes
+
+In simple terms, a Naive Bayes classifier assumes that the presence of a particular feature in a class is unrelated to the presence of any other feature. 
+For example, a fruit may be considered to be an apple if it is red, round, and about 3 inches in diameter. 
+Even if these features depend on each other or upon the existence of the other features,
+all of these properties independently contribute to the probability that this fruit is an apple and that is why it is known as ‘Naive’.
 
 
 
