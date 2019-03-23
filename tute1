@@ -27,39 +27,25 @@ we can access historical data for the particular location, ML strategy would be 
 
 
 For b, Label every product for every customer as either “interested” or “not interested”, then classification problem.
-– If we instead construe a customer as an instance, we might then try to find a single product (or set of products) that the customer would be interested in. Whether this would be
-a supervised problem (probably classification) or unsupervised problem (probably association rule mining, or perhaps clustering) would depend on how likely we are to be
-able to access labelled data for a sufficient number of customers, so that we could build
-a sensible model.
+– If construe a customer as an instance, predict single product (or set of products) that the customer would be interested in. This would be
+a supervised problem (probably classification) or unsupervised problem (probably association rule mining, or perhaps clustering).
 
 
-There is some question about the problem domain, for example:
-– If we have a single unknown piece of literature and a fixed set of authors who may
-have written it — and a collection of their previous writing — then this is probably a
-classification problem, where we might associate each piece of writing with the words
+For c, a single unknown piece of literature and a fixed set of authors who may
+have written it — and a collection of their previous writing -> classification problem, 
+where we might associate each piece of writing with the words
 (or grammatical structure, and perhaps metadata) contained within it;
-– If we have an open–domain problem — that potentially anybody could have written it
-— then collecting labelled data would be possible (i.e. classification), albeit obnoxious.
-We might instead prefer to use a clustering approach based on the document’s lingustic
-properties (although this is unlikely to identify a single author);
 
+If an open–domain problem — that potentially anybody could have written it, 
+then collecting labelled data would be possible (i.e. classification), albeit obnoxious.
+-> use a clustering approach based on the document’s lingustic
+properties (-> hard to identify a single author);
 
-We might instead have a situation like plagiarism detection, where we don’t have access
-to very much data for any individual author. In that case, simple classification is unlikely
-to be very effective (because our model might be insufficient to represent each author),
-but we could try something like outlier detection or semi-supervised learning (which we’ll
-talk about later in semester.
-
-Might seem whimsical, but this was actually attempting somewhat seriously (https://fivethirtyeight.com/tag/burrito-bracket/ — you might like
-to examine their study design and features). The key question here is what the instances are:
-it probably isn’t the case that we are looking for a single unique burrito that we can hold
-in our hands and say that it is truly the “best” one (whatever that means), but rather a particular restaurant (or product from a restaurant) that is consistent “better” than comparable
+For d, need to identify what the instances are:
+-> isn't the case that looking for a single unique burrito
+Find the “best” one, but rather a particular restaurant (or product from a restaurant) that is consistent “better” than comparable
 products from other restaurants.
 
-Perhaps these questions seem obtuse, but the first stage in many ML problems is working out
-what we are trying to achieve, and then asking ourselves whether we can collect or interpret
-the data in such a way that applying a Machine Learning strategy could plausible help us to
-find the information that we are looking for.
 
 3. Based on the following dataset1
 representation, would you consider “bananas” to be more similar
@@ -67,13 +53,7 @@ to “apples” or “oranges”?
 
 (a) Identify the attributes in this dataset. What types of attribute are they (implicity)? What
 other attributes might be relevant, and what are their types?
-• As with the previous questions, we would first need to establish what it is that we are
-trying to do:
+
 – the obvious interpretation of this data is that the “easy” and “tasty” axes are recording the two attributes for the various instances (of each kind of fruit); however, at
-that point, it isn’t clear what we could possibly wish to learn.
-– An alternative explanation might be that we wish to be able to plot other fruits (avocados, kiwifruit, dragonfruit, ...) in this space. In this case, “easy” and “tasty” are
-the concepts, but then the attributes that the author used to plot the given fruits are
-completely unknown to us — so we might need to brainstorm a set of measurable
-properties of fruits for ourselves, and see if they allow us to discern the given information correctly (probably using some kind of regression method).
-(b) (Extension) Critically assess the data: do you agree with how the problem is framed; do you
-consider the instances to be fairly located in the feature space?
+- use the euclidean distance. If there are mmore than one type of a fruit, use their mean value.
+
