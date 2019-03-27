@@ -664,7 +664,18 @@ Model built by k-NN is the dataset itself:
 
 -------------------------------------------------------------------------
 
-
+Strengths and Weaknesses of NN methods
+Strengths
+       - Simple
+       - can handle arbitrarily many classes
+       - Incremental
+Weaknesses
+       - need a useful distance func
+       - need an averaging function for combining the labels of multiple training examples
+       - Expensive (in terms of index accesses)
+       - Everything is done at run time (lazy learner)
+       - Prone to bias
+       - Arbitrary K value
 
 -------------------------------------------------------------------------
 
