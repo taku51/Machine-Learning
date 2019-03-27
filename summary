@@ -518,23 +518,142 @@ a mixed distribution — unclear what to do with ties
 Possibly can be taken as evidence that the given attributes
 are insufficient for solving the problem
 
+ID3 Decision Trees
+       - highly regarded, fast to train, even faster to classify
+       - susceptible to the effects of irrelevant feature
+       - some quirks to account for missing/continuous feature values.
+       
+ID3 is an indectuive learning algo.
+Decision tree variant:
+
+Oblivious Decision Trees: require the same attribute at every node in a layer.
+Random tree: only uses a sample of the possible attributes at a given node
+       - helps to account for irrelevant atts
+       - basis for a b
 -------------------------------------------------------------------------
 
+Instances: the individual, independent examples of a concept: exemplars
+Is described by n attribute value pairs
+Each also has a class label.
 
+Instance-based learning (IBL)
+IBL algos -> supervised; learn from labelled examples.
+Learn by example.
+Mode: function that maps instances to categoris.
+
+Similarity assessments
+-> set intersection
+Amazon: Book purchases
+Netflix: Movies that you have watched
+
+Rating sets (starts)
+       - thresholding using ratings
+       - different subsets for different ratings
+Categoris of items
+       - generalisation (child-parent)
+       - book or movie genres.
+       
+       
+Jaccard Similarity
+sim(A,B) = |A n B| / |A u B|
+
+Dice Coefficient
+2 |A n B| / (|A| + |B|)
+
+A + B doesn't exclude the area binded by both A n B
+
+-> emphasis on the purely common vals
+
+Feature vectors:
+-> n dimensional vector of features that represent some object.
+-> feature or attribute is any distinct aspect, quality, or characteristic of that object.
+
+May be nominal / categorical, orginal, numeric
 
 -------------------------------------------------------------------------
 
+Similarity
+• Numerical measure of how alike two data objects are.
+• Is higher when objects are more alike.
+• Often falls in the range [0,1]
 
+Dissimilarity
+• Numerical measure of how different are two data objects
+• Lower when objects are more alike
+• Minimum dissimilarity is often 0
+• Upper limit varies
+
+Distance measures:
+measure on a space -> takes two points in a space
+No neg dist
+symmetic
+triangle inequality typically holds
+d(x, y) <= d(x, z) + d(z, y)
+
+Manhattan Dist:
+Can calculate their similarity via their dist d based on the absolute diff of their cartesian cordi
+
+Cosine similarity:
+can calculate similarity through their vector cosine.
+(cosine of the angle between two vectors)
 
 -------------------------------------------------------------------------
 
+Maximum similarity or minimum dist
+d(x, y) = min(d(x, z) | z <- Y)
 
+1-NN : the cloest training instance
+K-NN : k nearest training instances
+
+weighted k-nn : Classify the test input according to the
+weighted accumulative class of the K nearest training instances,
+where weights are based on similarity of the input to each of the
+K neighbours.
+
+[offset-weighted K-NN]: Classify the test input according to
+the weighted accumulative class of the K nearest training
+instances (sum of k nearest training instance), where weights are based on similarity of the input to
+each of the K neighbours, factoring in an offset for the prior
+expectation of a test input being a member of that class
 
 -------------------------------------------------------------------------
 
+Weighting Strategies:
+
+-> Give each neighbour equal weight
+
+-> weight the vote of each instance by its inverse linear distance from the test instance:
+      
+wj = dk - dj / dk - d1 if dj != d1
+1 if dj (the one looking for) = d1
+d1 is the closest and dk is the furthest neighbors.
+
+wj = 1 / dj + epsilon
 
 
+Breaking ties:
+Equal num of votes for a given class:
+       random tie breaking
+       take class with highest prior prob
+       see if the addition of the k+1th instace breaks the tie
 
+smaller vals of k -> lower perfo due to noise (overfitting)
+Larger k => zero-R perfo
+
+-> trial and error
+
+k is generally set to an odd val
+
+Implementation involves brute force computation of distances between a test instance and every training instance.
+
+N instances
+D dimensions
+
+-> O(DN)
+
+AS N grows. brute force becomes infeasible.
+
+Why slow -> the model built by naive bayes/decision trees is generally 
 -------------------------------------------------------------------------
 
 
