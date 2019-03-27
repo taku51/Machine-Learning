@@ -653,7 +653,15 @@ D dimensions
 
 AS N grows. brute force becomes infeasible.
 
-Why slow -> the model built by naive bayes/decision trees is generally 
+Why slow -> the model built by naive bayes/decision trees is generally much smaller than the dataset:
+       predicting the class of a test instance requires approx O(CD) calc for naive bayers,
+       and O(D) node traversals for a decision tree, given C lasses and D attributes.
+       
+Model built by k-NN is the dataset itself:
+       - k-nn is lazy
+       - the time we save in training is lost if we have to make many predictions
+
+
 -------------------------------------------------------------------------
 
 
