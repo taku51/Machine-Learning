@@ -530,6 +530,24 @@ Oblivious Decision Trees: require the same attribute at every node in a layer.
 Random tree: only uses a sample of the possible attributes at a given node
        - helps to account for irrelevant atts
        - basis for a b
+
+The algorithm operates over a set of training instances, C.
+
+If all instances in C are in class P, create a node P and stop, 
+otherwise select a feature or attribute F and create a decision node.
+
+Partition the training instances in C into subsets according to the values of V.
+
+Apply the algorithm recursively to each of the subsets C.
+
+The order in which attributes are chosen determines how complicated the tree is.
+ID3 uses information theory to determine the most informative attribute.
+A measure of the information content of a message is the inverse of the probability of receiving the message:
+
+What are the theoretical and practical properties of ID3-style decision trees?
+-financial assessments
+
+
 -------------------------------------------------------------------------
 
 Instances: the individual, independent examples of a concept: exemplars
@@ -639,6 +657,8 @@ Equal num of votes for a given class:
 
 smaller vals of k -> lower perfo due to noise (overfitting)
 Larger k => zero-R perfo
+
+*zero-R -> 
 
 -> trial and error
 
