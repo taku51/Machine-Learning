@@ -871,6 +871,7 @@ hyperplane normal.
 • SVMs can be applied to non-linearly-separable data with an
 appropriate kernel function.
 
+Kernel function takes data as input and transform it into the required form.
 -------------------------------------------------------------------------
 
 
