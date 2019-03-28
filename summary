@@ -699,3 +699,202 @@ Weaknesses
 
 -------------------------------------------------------------------------
 
+Nearest prototype classification:
+A parametric variant of nearest neighbour classification is the nearest prototype, whereby
+we calculate the cetroid of each class, and 
+classify each test instance according to the class of the centroid is nearest to
+Get the average and find the class with the closest average val.
+
+Centroid is calculated by averaging the numeric vals along each axis:
+for a class Cj = {}
+proto Pj = <>
+where each ak* = sigma ak / M
+
+-------------------------------------------------------------------------
+
+Support Vector Machine:
+-> non probablistic binary linear classifier.
+       - linear classifier for a two-class classification problem
+       - The particular hyperplane it selects is the maximum margin hyperplane
+       - soft margins allow some data points to violate the separating hyperplane
+       - kernel func can be used to allow the SVM to find a non-linear separating boundary
+       between two classes.
+
+Goal is to find a hyperplane that separates two classes.
+
+Linearly separable:
+
+Not linearly separable:
+if cannot draw one line to separate.
+
+the hyperplane equation is:
+w1x1 + w2x2...wmxm + b = 0
+w · x + b = 0
+
+• A linear classifier takes the form f (x) = wT x + b
+• In 3D, this is a plane:
+
+For a k-NN classifier it was necessary
+to ’carry’ the training data.
+-> take the training data every time performs K-NN.
+
+For a linear classifier, the training
+data is used to learn w (the “weight
+vector”) and then (mostly) discarded.
+
+If a point is far from the devider, then it's hard to predict.
+
+It's difficult to rate the boundary decision.
+
+For a given training set, would like to find a decision boundary
+that allows us to make all correct and confident (far from the
+decision boundary) predictions on the training examples.
+
+SVM finds an optimal one.
+maximises the dist betw' the hyperplane and the difficult points close to decision boundary.
+
+Intuition: if there are no points near the decision surface, then there are no very uncertain
+classification decisions.
+
+Maximum margin solution: most stable under perturbations of
+the inputs
+
+Possibly large margin solution is
+better even though one
+constraint is violated
+
+
+Trade-off between the margin
+and the number of mistakes on
+the training data
+
+SVM-based classification:
+Associate one class as positive (+1) and one as negative (-1)
+-> pos area and neg area.
+
+Find the best sol, which maximise the margin bet' the positive and negative training instance
+(the model)
+
+To make a prediction for a test instance t = t1, t2, ... tn
+
+The value of f (t) can be transformed into a “probability”,
+with some extra work
+
+For small training sets, we can use a naive training method:
+• Pick a plane w and b
+• Find the worst classified sample yi
+(Note: This step is computationally expensive for large data sets)
+• Move plane w and/or b to improve the classification of yi
+• Repeat steps 2-3 until the algorithm converges
+
+-> takes too much time
+
+To obtain a non-linear classifier, can transform data by applying a mapping func,
+and then apply a linear classifier to the new feature vectors.
+
+Kernel: 
+make non separable problem separable
+map data into better representational space
+
+-------------------------------------------------------------------------
+
+wTx + b = 0,
+
+Objective is to find the data points that act as the boundaries of the two classes.
+
+These are referred to as the suppor vects.
+-> constrain the margin bet' the two classes.
+
+-------------------------------------------------------------------------
+
+Optimisation: Maximizing the margin
+Want to choose w so that the margin 2 / |w| is maximised
+
+Given the relo' between the margin, and the normalisation factor of the weight vector,
+maximizing the margin corresponds to minimising ||w||.
+
+Determination of model parameters corresponds to a convex
+quadratic optimisation problem. Any local solution is also a
+global optimum
+
+When the two classes are not (completely) linearly separable:
+-> introduce slack variables
+{ξk } N k=1
+and allow few points to be on the wrong side of the
+hyperplane at some cost. The modified objective function:
+
+Solving constrained optimisation problems uses the method of Lagrange multipliers.
+that means a Lagrange multiplier αk for every
+instance in the training set.
+
+• Most αk are 0; the non-zero values correspond to support
+vectors.
+
+• If we wish to recover w and b, we can do so by only
+considering the instances with non-zero αk.
+
+• Effectively, we can ignore every training instance not on the
+decision boundary at this point.
+
+f (t) = Sigma αyxTt + b
+
+If we need a non-linear SVM, we replace our dot product with
+the corresponding kernel function:
+
+f (t) = Sigma αyK(x, t) + b
+
+-------------------------------------------------------------------------
+
+SVMs are inherently two-class classifiers.
+Most common approaches to extending to multiple classes:
+
+       • one-versus-all (or one-versus-rest) classification
+       choose class which classifies test data point with greatest
+       margin
+       • one-versus-one classification (one classifier per pair of
+       classes)
+       choose class selected by most classifiers
+       
+Training time becomes a serious issue, because we need to build
+many SVMs...
+
+if there are too many SVMs, it takes too much time to process.
+
+Summary:
+• SVMs is a high-accuracy margin classifier
+• Learning a model means finding the best separating
+hyperplane.
+• Classification is built on projection of a point onto a
+hyperplane normal.
+• SVMs have lots of parameters that need to be optimised
+(slow?).
+• SVMs can be applied to non-linearly-separable data with an
+appropriate kernel function.
+
+-------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+
+
