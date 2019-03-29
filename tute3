@@ -74,6 +74,30 @@ If there's 0 / (0 + 0), it becomes not well defined.
 2, What is the difference between evaluating using a holdout strategy 
 and evaluating using a cross– validation strategy?
 
+In a holdout evaluation strategy, we partition the data into a training set and a test set:
+we build the model on the former, and evaluate on the latter.
+
+In a cross-validation evaluation strategy, do the same as above, 
+but a number of times, where each iteration uses one partition of the data as a test set
+and the rest as a training set (and the partition is different each time).
+
+(a) What are some reasons we would prefer one strategy over the other?
+
+Holdout is subject to some random variation, depending on which
+instances are assigned to the training data (because only do once), 
+and which are assigned to the test data. 
+Any instance that forms part of the model is excluded from testing, and vice versa. 
+This could mean that our estimate of the performance of the model is way off, 
+or changes a lot from data set to data set.
+
+Cross–validation mostly solves this problem: we’re averaging over a 
+bunch of values, so that one weird partition of the data 
+won’t throw our estimate of performance completely off; also, 
+each instance is used for testing, but also appears in the 
+training data for the models built on the other partitions. 
+It usually takes much longer to cross-validate, how- ever, 
+because we need to train a model for every test partition.
+
 
 3. For the following dataset:
 (a) Classify the test instances using the method of 0-R.
@@ -107,8 +131,9 @@ P(Y)  0 1 2/3 # probability of Y
 P(N)  1 0 1/3 # probability of N
 -----------------------------------------------------------------
 H     0 0 0.98 -> -(2/3log(2/3)...)
+*MI is the aggregated value of entropies divided by each of its proportion.
 MI    (2/6)(0) + 1/6(0) + 3/6 (0.918) = 0.45902 # 2/6... part comes from the total
-IG    1 - 0.459 = 0.5408
+IG    1 - 0.459 = 0.5408 *1 - Mutual Information is Information gain
 
 Do this for other attributes and choose the best attribute with the bet information gain and gain 
 ratio.
