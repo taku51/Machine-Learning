@@ -144,4 +144,6 @@ Using the Gain Ratio as a splitting criterion
 “split information” — the entropy of the distribution of instances across the daughters of
 a given attribute.
 
+Why use gain ratio
+ "For example, suppose that we are building a decision tree for some data describing a business's customers. Information gain is often used to decide which of the attributes are the most relevant, so they can be tested near the root of the tree. One of the input attributes might be the customer's credit card number. This attribute has a high information gain, because it uniquely identifies each customer, but we do not want to include it in the decision tree: deciding how to treat a customer based on their credit card number is unlikely to generalize to customers we haven't seen before."
 
