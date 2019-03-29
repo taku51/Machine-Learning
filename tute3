@@ -1,0 +1,72 @@
+1. Consider the following 10 instances, given so-called “gold standard” labels 
+(assuming a 3-class problem), and the output of four supervised machine learning models:
+Given four models
+
+P = {A, B, C}
+*all labels/classes are important so put them in positive
+N = {?}
+*missing val goes into negative
+
+(a) Where possible, calculate the accuracy and error rate of the four models.
+
+For system 1, there are 6 correct responses (instances 1, 3, 4, 5, 9, and 10 — where the prediction is the same as the “Gold” label), out of the 10 instances, so that the accuracy is 60%.
+– For system3 , the 5 correct responses(alloftheAinstances),so that the accuracy is 50%.
+
+The latter indicates the predicted ones
+FP = negative, predicted positive
+TP = positive, predicted positive
+FN = negative, predicted negative
+TN = positive, predicted negative
+
+Theerrorrateofsystem1is1−0.6=0.4
+Theerrorrateofsystem2is1−0.5=0.5
+Theerrorrateofsystem3is1−0.5=0.5
+Theerrorrateofsystem4is1−0.4=0.6
+
+Accuracy rate = (TP + TN) /  (TP+FP+FN+TN)
+Error rate  = (FP + FN) / (TP+FP+FN+TN)
+
+*Accuracy rate -> Actually positive but predicted to be positive and negative
+
+Model 2:
+All classes are important but not the missing values.
+FP = 10
+FN = 0
+TP = 10
+TN = 0
+
+*If there are more than one predicted values, such as A or B or C, then the FP(predicted to be
+positive but negative) is can be multiple.
+
+Model 4:
+TP = 4
+FP = 0
+FN = 6
+
+Acc = 4/10 = 40%
+ERR = 1 - 0.4 = 0.6 
+
+
+(b) Where possible, calculate the precision and recall, treating 
+class A as the “positive” class. Do the same for the B and C classes, in turn, and then 
+calculate the macro-averaged precision and recall.
+
+For precision, with respect to one class/label only
+Pre = TP / (TP + FP)
+
+For class A
+P = {A}
+N = {A, B, C, ?}
+TP = 4
+FP = 3
+
+A: Pre = 4/7
+
+Sometimes there's pre = 0 / (0 + 0) -> say Not well defined.
+The average of precision cannot be calculated in this case.
+
+*Again with respect to one class only
+Recall = TP / (TP+FN)
+Macro averaged precision = average of precisions with respect to each label/class
+
+
