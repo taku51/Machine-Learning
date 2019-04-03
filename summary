@@ -872,16 +872,167 @@ hyperplane normal.
 appropriate kernel function.
 
 Kernel function takes data as input and transform it into the required form.
--------------------------------------------------------------------------
-
 
 -------------------------------------------------------------------------
 
+If only nominal attributes:
+       NB, 1-R, DT
+       Need to alter the data into a format suitable for k-NN, NP, SVM
+For k-NN and NP, can fall back to Hamming Distance:
+       dH(A, B) = sigma o if ai = bi or 1 
+But constructing a prototype is not well defined.
+
+Randomly assign numbers to attribute values:
+        if scale is constant between attributes -> not as bad as it sounds
+        worse with higher-arity attributes (more attribute values)
+        imposes an attribute ordering which may not exist.
+        
+ML Sol -> One hot encoding:
+       If nominal att takes m vals, replace it with m Boolean Attributes
+       Example:
+              hot = [1, 0, 0]
+              mild = [0, 1, 0]
+              cool = [0, 0, 1]
+             
+  -> solves the problem of nominal attributes by massively increasing the feature space.
+  
+Nominal data is categorical data that assigns numerical 
+values as an attribute to an object, animal, person or any other non-number. 
+Remember, nominal data are numbers given as codes to certain objects. 
+They are used to identify the objects only; they cannot be manipulated as numbers.
+
+3 y
+4 y
+7 y
+8 y
+5 y
+P(a=5|y) = 1/5
+-> is not effective
+-------------------------------------------------------------------------
+
+Types of Naive Bayes:
+       Multivariate NB: attributes are nominal, and can take any number of values
+       Binomal NB: attributes are binary
+       Multinomal NB: attributes are natural numbers
+       Gaussian NB: attributes are real numbers
+              instead of a probability mass func -> use a density func
+              
+Decision Trees:
+       To build a decision tree, we label a node with an attribute, and branches with
+       corresponding attribute values.
+       Example -> outlook -> sunny, o'cast, rainy
+       
+If the attribute is numerical -> binarisation:
+
+       Each node is labbeled with ak, and has two branches: one branch is ak <= m,
+       the other is ak > m -> split into two
+       Info Gain/ Gain Ration must be calculated for each non-trivial split point for each
+       attribute
+              naively, this each unique value is the dataset
+              faster implementations constrain the number of split points
+        Otherwise equ to ID3
+              Binarisation leads to arbitrarily large trees.
+              
+        Sometimes it's better with ranges.
+        
+Discretisation -> translation of continuous atts onto nominal atts:
+
+Discretisation is generally performed as a two-step process:
+       decide how many values to map the feature on to
+       
+       map each continutous value onto a discrete value.
+       
+ Advantages:
+       simple to implement
+ Disadv:
+       loss of generality
+       no sense of numeric proximity/ordering
+       describes the training data but nothing more (overfitting)
+
+Partition values into bins of equal size:
+Procedure 1: Identify the upper and lower bounds and partition the overall space into n equal intervals
+ = equal width:
+ 
+ Equal freq discretisation
+ Adv: simple
+ Disadb:
+ arbitrary n
+ 
+ Procedure 2: sort the values, and identify breakpoints which
+produce n (roughly) equal-sized partitions = equal
+frequency:
 
 -------------------------------------------------------------------------
 
+K-means Clustering
+Given k, the k-means algo' is implemented in four steps:
+1, Select k points at random to act as seed clusters
+2, Assign each instance to the cluster with the nearest centroid
+3, Compute seed points as the centroids of the clusters of the current partition
+4, Go back to 2, stop when the assignment of instances to clusters is stable
+
+
+One typical improvement runs k-means multiple times (with
+random seeds), looking for a common clustering
+• we can simply ignore runs which don’t converge within τ
+iterations
+
+Strengths:
+• can handle numerical values.
+
+Weaknesses:
+• need multiple runs to have any certainty about convergence
+• random behaviour
+• sensitive to outliers
+• still need to know number of intervals (k)
+
+Naive Supervised Discretisation:
+Sort the values and identify breakpoints in class membershi
+
+
+64    65    68 69 70      70 
+yes | no |  yes yes yes | no
+
+Reposition any breadk points where there is no change in numeric value:
+
+64    65    68 69 70   70 
+yes | no |  yes yes yes no |
+
+Set the breakpoints midway between the neighbouring values:
+Adv: simple to implement
+Disadv: usually creates too many categories (overfitting)
+
+-> to avoid overfitting:
+Delayt inserting a breakpoint until each cluster contains at least n instances of 
+a single class:
+
+64 65 68 69 | 70 71 72 72 75 ...
+yes no yesyes| yes no no yes yes ..
+
+-> merge neighbouring clusters until they reach a certain size
 
 -------------------------------------------------------------------------
+
+Probability Mass Func:
+To discrete events:
+P(temp = hot | y) = 0.25
+Summing over every event gives 1: sigma P = 1
+For numerical atts, assign probs to ranges
+p(a <- [2.05, 3.00] | Y) = 0.38
+Integral over some function:
+0.38
+
+Prob density func:
+based on the gaussian disto (normal disto):
+Given the mean and standard deviation of a disto X, it is possible to estimate the 
+prob density for an obs X = x
+
+Some relevant prop of gaussian
+Symmetric about the mean
+area under the curve = 1
+
+Mean of a sample X is the average value it takes
+Standard dev -> sqrt(sigma (val - mean)^2)
 
 
 -------------------------------------------------------------------------
