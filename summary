@@ -1034,9 +1034,143 @@ area under the curve = 1
 Mean of a sample X is the average value it takes
 Standard dev -> sqrt(sigma (val - mean)^2)
 
-
 -------------------------------------------------------------------------
 
+Better Models:
+       Better perfo according to some evaluation metric
+
+Side-goal:
+       Seeing important features can suggest other important features
+       Tell us interesting things about the problem
+Side-goal:
+       fewer features -> smaller models -> faster answer
+              More accurate anwer >> faster answer.
+              
+Wrapper methods:
+       Choose subset of attributes that give best perfo on the development 
+       (with respect to a single learner)
+       
+For the weather data set:
+       train model on outlook
+       .. temperature
+       
+       ... outlook, temperature
+       
+      best perfor on data set -> best feature set
+      
+      adv: feature et with optimal perfo on development data
+      disadv: takes a long time
+ 
+Train and eval model on each single attribute
+Choose best att
+
+Until convergence:
+       Train and eval mdoel on best atts, plus each remaining single attribute
+       choose best attribute out of the remaining set
+       
+Iterate until perfo (accuracy) stops increasing
+Takes 1/2 m^2 cycles for m attributes
+
+In practice, converges much more quickly than this
+
+Convegences to a sub optimal sol
+
+Ablation approach:
+       Start with all atttributes
+       remove one att, train and eval model
+       until divergence:
+              from remaining atts, remove each att, train and evaluate model
+       remove att that causes least perfo degredation
+       
+       Termination cond usually: perfo (accuracy) starts to degrade by more than epsilon
+       Good
+       -> removes irrelevant atts
+       
+       Bad
+       -> assumes independence of atts
+       -> take m^2 time; cycles are slower with more atts
+       -> not feasible on non-trivial data sets.
+       
+       Some models eprform feature selection as part of the algo'
+              Most notably, linear classifiers
+              To some degree: SVMs and Logistic Regression
+              To some degree: decision trees.
+              
+       Possible but difficult to control for inter-dependence of attributes
+       
+       
+  What makes a single feature good?
+       Better Models!
+       Well correlated with class
+       
+ Independence:
+       P(C|A) = P(C) given A doesn't make any changes.
+       P(A,C) = P(A) P(C)
+       
+ We want atts that are not independent from class.
+ 
+ P(A, C)/P(A)P(C)
+= 1
+
+If LHS >> 1, attribute and class occur together much more
+often than randomly.
+
+If LHS ∼ 1, attribute and class occur together as often as
+we would expect from random chance
+
+(If LHS << 1, attribute and class are negatively correlated.
+More on this later.)
+
+PMI(A = a, C = c) = log2 P(a, c) / P(a)P(c)
+
+Attributes with greatest PMI: best atts (most correlated with class)
+
+(Various notational shorthand conventions, like A → A = Y ,
+where Y is the “interesting” value of a binary attribute)
+
+Well correlated with [interesting] class
+• Knowing a lets us predict c with more confidence]
+
+Reverse correlated with class
+• Knowing a¯ lets us predict c with more confidence
+
+Well correlated (or reverse correlated) with uninteresting
+class
+• Knowing a lets us predict c¯ with more confidence
+• Usually not quite as good, but still useful
+
+Contigency tables: compact representation of these frequency
+counts
+
+MI(A, C) = sum of the point wise mutual info of all pairs.
+A Yes
+A NO
+C Yes
+C No
+
+Combinations of these.
+
+Chi-square
+Similar but diff sol:
+
+PMI, MI X^2
+
+Check the val we actually observed O(W) with the expected value E(W):
+       if the observed val is much greater than the expected val, a occurs more often with c than
+       we would expect at random - predictive
+       
+       If O(W) is much lesser than the expected, a occurs less often with c than we would expect at random 
+       
+       If close, a occurs as often with c as we would expect randomly
+       
+       Similarly with X, Y, Z
+       sigma sigma (O - E)^2 / E
+       
+       if the expected and observed are the same, then x^2 becomes 0
+       
+       
+                     
+       
 -------------------------------------------------------------------------
 
 -------------------------------------------------------------------------
