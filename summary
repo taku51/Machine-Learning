@@ -1185,7 +1185,35 @@ usually not important
 • Does have all of the technical downsides of continuous
 attributes, however
 • Treat as nominal (i.e. throw away ordering)
-       
+
+
+What makes a single feature good?
+• Highly correlated with class
+• Highly reverse correlated with class
+• Highly correlated (or reverse correlated) with not class
+... What if there are many classes?
+
+Mutual Information is biased toward common, uninformative
+features
+• All probabilities: no notion of the raw frequency of events
+• For example: 10% of the instances, a common attribute
+occurs with a particular class, but 11% of instances are truly
+of that class. Is this meaningful?
+• Best features in a typical dataset might only have MI of
+about 0.03 bits; 100th best for a given class, perhaps 0.001
+bits
+• Many very common features will be selected
+
+Chi-square is biased toward rare, “informative” features
+• This happens because of squaring the difference (rare means
+small E)
+• If a feature is seen rarely, but always with a given class, it
+will be seen as “good”
+• For example: a particular attribute is present in 100 out of
+200K instances, but always with (a relatively rare) class. Is
+this meaningful?
+• Various “humps” where infrequent (1 instance, 2 instances,
+3 instances, etc.) attributes are tied in the ranking
 -------------------------------------------------------------------------
 
 -------------------------------------------------------------------------
