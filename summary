@@ -1168,8 +1168,23 @@ Check the val we actually observed O(W) with the expected value E(W):
        
        if the expected and observed are the same, then x^2 becomes 0
        
-       
-                     
+Chi-square can be used as normal, with 6 observed/expected
+values.
+• To control for score inflation, we need to consider “number
+of degrees of freedom”, and then use the significance test
+explicitly (beyond the scope of this subject)
+
+Ordinal attributes (e.g. low, med, high or 1,2,3,4).
+Three possibilities, roughly in order of popularity:
+• Treat as binary
+• Particularly appropriate for frequency counts where events
+are low-frequency (e.g. words in short documents)
+• Treat as continuous
+• The fact that we haven’t seen any intermediate values is
+usually not important
+• Does have all of the technical downsides of continuous
+attributes, however
+• Treat as nominal (i.e. throw away ordering)
        
 -------------------------------------------------------------------------
 
