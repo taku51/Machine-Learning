@@ -1,7 +1,164 @@
 
+1. For the following dataset:
+
+(a) Classify the test instances according to the method of Nearest Prototype.
+
+Find a centroid (prototype) for each class by averaging (taking the mean) of the attribute
+values, for the instances of that class in the training data: because want to take the mean value for each label
+for each class
+
+for each label (apple, ibm, lemon, sun)
+NP: Pf(class = fruit) = ⟨4+5 /2, 0+0 /2, 1+5 /2, 1+2 /2⟩
+= ⟨4.5, 0, 3, 1.5⟩
+
+Pc(class = computer) = ⟨2+1 /2, 5+2 /2, 0+1 /2, 0+7 /2⟩
+=⟨1.5, 3.5, 0.5, 3.5⟩
+
+We then classify a test instance according to the closest prototype. We will need to 
+choose a similarity/distance function to do this; 
+Use euclidean here.  Classify the test instance based on the distance.
+
+dE(A,B) = sqrt(sigma (ak −bk)^2)
+
+For the first test instance:
+test instance label val - training instance mean val 
+dE(T1,Pf) = √(2−4.5)2 +(0−0)2 +(3−3)1 +(1−1.5)2 =√6.5
+dE(T1,Pc) = √(2−1.5)2 +(0−3.5)2 +(3−0.5)1 +(1−3.5)2 =√25
+
+The FRUIT prototype is closer, so we will predict that the class of this instance is FRUIT.
+For the second test instance:
+dE(T2,Pf) = √(1−4.5)2 +(2−0)2 +(1−3)1 +(0−1.5)2 =√22.5
+dE(T2,Pc) = √(1−1.5)2 +(2−3.5)2 +(1−0.5)1 +(0−3.5)2 =√15
+
+• This time, the COMPUTER prototype is closer, so we will predict that the class of this
+instance is COMPUTER.
+
+(b) Using the Euclidean distance measure, classify the test instances using the 1-NN method.
+
+*This is similar to the previous question, but instead of calculating the distance 
+between a test instance and a prototype, we will calculate the distance between the test instance
+and each training instance:
+
+1-nn find the closest.
+
+dE(T1,A) = √(2−4)2 +(0−0)2 +(3−1)2 +(1−1)2 = √8
+
+dE(T1,B) = √(2−5)2 +(0−0)2 +(3−5)2 +(1−2)2 = √14
+
+dE(T1,C) = √(2−2)2 +(0−5)2 +(3−0)2 +(1−0)2 = √35
+
+dE(T1,D) =  √(2-1)2+(0−2)2 +(3−1)2 +(1−7)2 = √45
+
+So no averaging by classes but compare instance themselves.
+
+The nearest neighbour is the one with the smallest distance — here, this is instance A, which is a FRUIT instance. Therefore, we will classify this instance as FRUIT.
+The second test instance is similar:
+
+Answer depends on distance method
+
+(c) Using the Manhattan distance measure, classify the test instances using the 3-NN method,
+for the three weightings we discussed in the lectures: majority class, inverse distance, inverse
+linear distance.
+
+The first thing to do is to calculate the Manhattan distances, 
+which is like the Euclidean distance, but without the squares/square root:
+Without squaring, so the distance is not so important
+
+dM(A,B) = sigma (k) |ak −bk|
+
+dE(T1,A) = |2−4|+|0−0|+|3−1|+|1−1|=4 
+dE(T1,B) = |2−5|+|0−0|+|3−5|+|1−2|=6 
+dE(T1,C) = |2−2|+|0−5|+|3−0|+|1−0|=9 
+dE(T1,D) = |2−1|+|0−2|+|3−1|+|1−7|=11 
+dE(T2,A) = |1−4|+|2−0|+|1−1|+|0−1|=6 
+dE(T2,B) = |1−5|+|2−0|+|1−5|+|0−2|=12 
+dE(T2,C) = |1−2|+|2−5|+|1−0|+|0−0|=5 
+dE(T2,D) = |1−1|+|2−2|+|1−1|+|0−7|=7
+
+3-nn:
+
+
+(d) Can we do weighted k-NN using cosine similarity?
+
+ Ofcourse!If anything,this is easier than with a distance, because we can assigna weighting 
+ for each instance using the cosine similarity directly. 
+ An overall weighting for a class can be obtained by 
+ summing the cosine scores for the instances of the corresponding class, 
+ from among the set of nearest neighbours.
+• Let’s summarise all of these predictions in a table (overleaf). We can see that there is some divergence for these methods, depending on whether B or D is the 3rd neighbour for T2:
+
+
+2. Revise SVMs, particularly the notion of “linear separability”.
+(a) If a dataset isn’t linearly separable, an SVM learner has two major options. What are they,
+and why might we prefer one to the other?
+(b) Contrary to many geometric methods, SVMs work better (albeit slower) with large attribute
+sets. Why might this be true?
 
 
 
+3. We have now seen a decent selection of (supervised) learners:
+• Naive Bayes
+• 0-R
+• 1-R
+• Decision Trees
+• k-Nearest Neighbour
+• Nearest Prototype
+• Support Vector Machines
+
+
+(a) For each, identify the model built during training.
+NB: this is a set of prior probabilities P(cj) and a set of posterior probabilities P(ak|cj) -> prior times
+posterior
+
+0R : majority class Y (doesn't matter what attributes there are)
+
+1R: use the number of atts to find a class -> this is an attribute, and the majority class of 
+the instances (a label) for each value -> find an attribute which is likedly to predict the class.
+
+DT: this is the tree itself: every non-terminal node is labelled with an
+attribute, and each branch with an attribute value; every leaf is labelled with a class -> it reaches a class
+at the end (one with a high information gain (low entropy -> easy to predict) is often overestimated as they
+stay in the top and have more power to influence)
+
+k-NN: this is just the dataset itself! It doesn't do anything.  It compares the test instance and training instances.
+
+NP: this is a prototype (vector, centroid, average of instances) for each class
+
+SVM: this is the maximum-margin hyperplane, defined by w and b, or equivalently 
+by a set of Lagrance multipliers αk, and the corresponding training instances for which αk > 0.
+
+(b) Rank the learners (approximately) by how fast they can classify a large set of test instances.
+(Note that this is largely independent of how fast they can build a model, and how well they
+work in general!)
+
+Talking about after models are built
+C = class
+D = # attributes
+N = data
+
+All of them are supervised.
+
+0R: O(0)
+1R: O(1)
+DT: O(D) 
+SVM: O(D) need to scan all at least once
+NB: O(CD+C)
+NP: O(DC)
+K-nn: O(ND + k)
+
+ Given N instances, C classes, and D attributes:
+• The fastest few are clear: 0-R (O(0)), 1-R (O(1)), and Decision Trees (O(D)). 
+• The next two are essentially equally fast: NP (O(CD)) and NB (O(CD + C)).
+
+
+An SVM isn’t built to deal with multiple classes6. If there are exactly two classes, it
+is just as fast as the previous two, which in turn are essentially 
+indistinguishable from a Decision Tree. If there are many classes, 
+and we are using a one-vs-all strategy for building our SVM(s), 
+it is approximately the same as NB (O(CD + C)). If we are using one-vs-one, 
+it is somewhat slower (O(C2D + C2)).
+
+k-NN is much, much slower, because it must make a comparison for each instance (O(ND + k)).
 
 
 
