@@ -150,7 +150,6 @@ K-nn: O(ND + k)
 • The fastest few are clear: 0-R (O(0)), 1-R (O(1)), and Decision Trees (O(D)). 
 • The next two are essentially equally fast: NP (O(CD)) and NB (O(CD + C)).
 
-
 An SVM isn’t built to deal with multiple classes6. If there are exactly two classes, it
 is just as fast as the previous two, which in turn are essentially 
 indistinguishable from a Decision Tree. If there are many classes, 
