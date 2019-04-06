@@ -80,21 +80,64 @@ dE(T2,D) = |1−1|+|2−2|+|1−1|+|0−7|=7
 
 (d) Can we do weighted k-NN using cosine similarity?
 
- Ofcourse!If anything,this is easier than with a distance, because we can assigna weighting 
+ Ofcourse!If anything,this is easier than with a distance, because we can assign weighting 
  for each instance using the cosine similarity directly. 
  An overall weighting for a class can be obtained by 
  summing the cosine scores for the instances of the corresponding class, 
  from among the set of nearest neighbours.
-• Let’s summarise all of these predictions in a table (overleaf). We can see that there is some divergence for these methods, depending on whether B or D is the 3rd neighbour for T2:
-
 
 2. Revise SVMs, particularly the notion of “linear separability”.
 (a) If a dataset isn’t linearly separable, an SVM learner has two major options. What are they,
 and why might we prefer one to the other?
+
+Soft margins: we permit a few points to be on the “wrong” side of the line, at a penalty, 
+if this allows us to find a better (wider) margin.
+
+
+Kernel methods: we (effectively) transform the data into a higher-dimensional space. 
+Conceptually, this is by creating new dimensions (and consequently, new attributes), 
+but the “kernel trick” allows us to do this without making the transformation explicit 
+(and so, saving us some computation time).
+
+• If we suspect that the data is essentially linearly separable, except that a few points will be mis-classified 
+(for example, if there are outliers in the data), then using a soft-margin SVM is the better choice. 
+The kernel trick is too powerful to account for just a few instances 
+(and, in the worst case, will generate a spurious transformation of the data to deal with them).
+
+• If, on the other hand, we suspect that the data isn’t really linearly separable — 
+because the instance topology isn’t linear, but polynomial or circular or something — 
+then the soft margin SVM will produce a spurious margin, because there really isn’t a 
+way to draw a straight line through the data at all. (This can be confirmed empirically, 
+by cross- validating, at the cost of some time.)
+
+• One major concern, separate to these notions is that the most popular method for building an SVM (SMO) 
+converges much more quickly with a linear kernel than with a non-linear kernel. (This can be seen empirically.) 
+Consequently, unless you have a lot of time to wait for the training cycles, 
+non–linear kernels are generally only used as a last resort. 
+(And many problems don’t really require them anyway!)
+
 (b) Contrary to many geometric methods, SVMs work better (albeit slower) with large attribute
 sets. Why might this be true?
 
+The clearest way of seeing this is to imagine that the dataset has a number of useful attributes 
+(as in, they are strongly or moderately predictive of the class), 
+and a number of not-so-useful attributes (as in, they are marginally predictive, or not predictive at all).
 
+• Most geometric methods calculate some kind of similarity or distance metric, which
+assumes that every attribute is equally important. For example, using the Manhattan Distance, the difference between the values 
+of the useful attributes can be small, but if the difference between the not-so-useful attributes is large, 
+then the two instances will be not-so-similar (they will be far apart in space), as it considers both non-useful
+and useful attributes.
+
+• A typical SVM gets around this problem by (effectively) finding different 
+“weights” (how important each attribute is to the target) for each attributes 
+these form the normal vector w; the weights of the not-so-useful attributes will 
+(hopefully) be negligible, compared to the weights of the useful attributes, 
+so that the basis for the prediction (hopefully) becomes more meaningful.
+
+• There are other issues too, like how the SVM is building a linear combination 
+(or non- linear combination, if we are using a non-linear kernel) of the attributes, 
+rather than treating them all as completely distinct.
 
 3. We have now seen a decent selection of (supervised) learners:
 • Naive Bayes
