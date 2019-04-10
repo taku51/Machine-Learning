@@ -1214,16 +1214,233 @@ will be seen as “good”
 this meaningful?
 • Various “humps” where infrequent (1 instance, 2 instances,
 3 instances, etc.) attributes are tied in the ranking
+
+-------------------------------------------------------------------------
+
+Our job as Machine Learning experts:
+• Choose a model suitable for the problem we are trying to
+solve.
+• Choose attributes suitable for the problem and the chosen
+model.
+• ... But what about the hyper-parameters of the model
+(e.g. K in nearest neighbour classifier)?
+
+-> Optimisation
+Given an eval metric (accuracy), a dataset T, a feature rep F(T), and a learner L with hyperparameters sita^h
+
+Maximise D(L, θh; F(T )) -> maximise accuracy of feature rep, dataset rep, learner with hyperparameter
+
+• (More commonly, minimise a “loss” metric, like Error Rate)
+
+-------------------------------------------------------------------------
+
+Grid Search
+derivatives are not calculable (defined?) in this context, so
+we can’t use an analytic solution
+
+Iterative Grid-search for KNN
+best_score = 0
+best_params = None for k in [1, 2, 3]:
+for metric in [’euclidean’, ’cosine’]:
+knn = KNeighborsClassifier(k, metric):
+knn.train(X_train, y_train)
+score = knn.score(X_dev, y_dev)
+if score > best_score: best_score=score, best_params =
+(k, metric)
+
+Altenate the val k to find the best k
+
+update if score is better than the best score
+
+Train a new model on training data with best_params and
+evaluate it on test data.
+
+As we saw in KNN, we exhaustively search the parameter
+space.
+• For each numerical θk ∈ R:
+• Identify boundaries of range R−, R+
+• Divide range [R−, R+] into linear or logarithmic steps.
+
+Hyper-Parameter tuning:
+ evaluating lots of models, there is a risk of
+“over-tuning”:
+• the best choice of hyper-parameters for the development
+data may not the best choice of hyper-parameters on the
+test data
+• (special case of “over-fitting”, more in Evaluation II)
+
+
+What is a Model Hyperparameter?
+A model hyperparameter is a configuration that is external to the model and whose value cannot be estimated from data.
+-> a parameter set prior to distribution to help evaluate model parameters.
+
+They are often used in processes to help estimate model parameters.
+They are often specified by the practitioner.
+They can often be set using heuristics.
+They are often tuned for a given predictive modeling problem.
+
+For example, K in neare neighbour classifier -> don't know what the best k is.
+
+Maximise the accuracy. Minimise the error rate.
+
+the best choice of hyper-parameters for the development
+data may not the best choice of hyper-parameters on the
+test data -> based on the training data.
+
+• If you are comparing two different models, you should do the
+same number of hyper-parameter search iterations for both.
+
+There are other methods for hyper-parameter tuning other
+than Grid Search: Random Search, Evolutionary,
+Gradient-based, and Bayesian optimisation
+
+-------------------------------------------------------------------------
+
+We have studied Naive Bayes and Decision Tree classifiers:
+• The training data consists of input-output pairs.
+• Input: categorical or numeric, Output: categorical (e.g.
+Yes/No, dog/cat, spam/notspam).
+• What if the output/class is continuous?
+Such as numbers.
+
+Regression
+• Important type of Machine Learning problem where the
+output is continuous (e.g. is a real number) with many
+applications:
+• Predict wind farm energy output from weather data (we
+need robust energy sources, so we need to be able to
+predict the output)
+• Predict the number of customers for a shop from
+date/weather/holidays/ (we need to know how many sales
+personnel we need in each day rather than rely on intuition)
+• Predict life expectancy of critical patients (to create the
+best treatment plan for them).
+• Predict the price of a product (e.g. gold/stocks) in future
+(for economic planning).
+
+Continuous attributes → continuous class
+• Assuming a linear relationship between the k attribute
+values ai and the numeric output c
+
+c = w0 + sigma wi ai
+
+wi is a weight corresponding to attribute val ai.
+
+Linear regression captures a relationship between two variables or
+attributes.
+It makes the assumption that there is a linear relationship
+between the two variables.
+• An outcome variable (aka response variable, dependent
+variable, or label)
+• A predictor (aka independent variable, explanatory variable,
+or feature)
+Linear functions are less descriptive than non-linear functions,
+but permit simpler (mathematical) strategies.
+
+The more
+umbrellas you sell, the more money you make. How much money
+you make is directly proportional to how many umbrellas you sell.
+
+Choose the best line
+• Operationally, the line that minimises the distance between
+all points and the line.
+
+Least squares estimation: find the line that minimises the
+sum of the squares of the vertical distances between
+approximated/predicted yˆis and actual yis.
+
+• Just a special case of the optimisation problem from before
+• All attributes are numerical → Grid Search is )-:
+• Partial derivatives can be (easily!) calculated
+• (RSS is convex — the local optimum is a global minimum)
+
+-------------------------------------------------------------------------
+
+Iterative approximation to Error optimisation:
+1 Initialisation: Guess θ^0, set i = 0
+2 Evaluate: Compute Error(θ^i;L, F(T))
+3 Termination: Decide whether to stop (break if so)
+4 Update: Set θ^i+1 from θ^i somehow; i = i + 1
+5 Go to step 2
+
+Gradient Descent Algorithm 
+
+θ^i+1 := θ^i − α∇Error(θ^i)
+θ^i+1 := θ^i - α ∂/∂θ^i Error(θ^i)
+
+Steps in the Gradient Descent algorithm involve:
+• making a prediction for each (training) instance
+• comparing the prediction with the actual value
+• multiplying by the corresponding attribute value
+• updating the weights after all of the training instances have
+been processed
+• We were going to compare the predictions with the actual
+values anyway, when we evaluate the model!
+• (Note that the evaluation metric is now included in the
+model...)
+
+∇Error(θ) is a vector of partial derivative terms.
+It measures the slope (= gradient) of the function Error(θ): -> measures error(sita)
+this is the direction
+• The gradient points up-hill; we follow it down-hill. Each
+update reduces the error slightly. -> follow down-hill to reduce the error.
+• α is a parameter of the algorithm, representing the learning
+rate (how big a step you take in updating θi).
+• If α is too small, the algorithm might be slow.
+If it is too large, you might miss the minimum.
+
+We can easily map nominal attributes (yellow, red, blue) onto numeric
+attributes through binarisation (classify into 0 or 1)
+
+It clearly doesn’t make sense to evaluate numeric prediction
+tasks in the same manner as classification tasks, as:
+• “direct hits” (true positive matches) are an unreasonable
+expectation
+
+• unlike classification, we can make use of the inherent
+“ordering” and “scale” of the outputs
+
+• There are many, many scoring metrics for regression tasks,
+all of which are based on the absolute or relative difference
+between the predicted (yˆi) and actual (yi) values of test
+instances
+
+• Correlation coefficient (Pearson’s correlation)
+
+• The relative ranking of methods each across the different
+metrics is reasonably stable, such that the actual choice of
+metric isn’t crucial
+
+Linear regression is an intuitive, (relatively) easily
+implementable method, but can we usually expect a linear
+relationship between feature values and target variables?
+• Features can be mapped to a higher dimension where they
+are linearly separable: e.g. (x1, x2) => (x1, x2, x1^2, 2x1x2,x2^2)
+• Non-linear methods for numeric prediction include:
+• regression trees
+• neural networks
+• support vector regression
+-------------------------------------------------------------------------
+
+
+
 -------------------------------------------------------------------------
 
 -------------------------------------------------------------------------
 
 -------------------------------------------------------------------------
 
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
 
-
+-------------------------------------------------------------------------
 -------------------------------------------------------------------------
 
 -------------------------------------------------------------------------
 
+-------------------------------------------------------------------------
 
