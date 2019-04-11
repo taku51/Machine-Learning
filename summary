@@ -1420,9 +1420,120 @@ are linearly separable: e.g. (x1, x2) => (x1, x2, x1^2, 2x1x2,x2^2)
 • regression trees
 • neural networks
 • support vector regression
--------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+Regression <-> Classification
+We have a continuous class, but a discrete learner ("classifier")
+       Map continuous vals onto discrete labels: discretisation
+              set range of continuous variable that corresponds to each discrete class
+
+Discrete class but a continuous learner ("regressor")
+       build a suite of regression tasks via multi-response linear regression:
+              perform one regression per discrete class, with all instances of that class set to 1
+              and other instances set  to 0.
+              
+              classify a given test instance by regressing its value relative
+              to each class, and selecting the class with the highest value
+
+Somewhat similar to one vs rest multi-class SVM
+
+Assuming a 2-class (Y/N) problem:
+• Every training instance I with class = Y: P(c = Y |I) = 1
+• Every training instance J with class = N: P(c = Y |J) = 0
+
+Loglinear model
+log(P) = βx
+P = e^βx
+
+Curve has unbalanced shape:
+• Fine granularity of response as P → 0
+• Coarse response as P → 1
+• β · x > 0 → P > 1
+
+Want behaviour that is same for high P and low P
+• This is provided by log odds or logit:
+
+Value of P shouldn't affect the result much
+logit(P) = log (P / 1 − P)
+logit(1 − P) = − logit(P)
+
+Logistic regression:
+Expression on rhs of this eq known as logistic func -> logistic regression
+logit P(c|x) = log P(c|x) / 1 − P(c|x) = β0 + β1x1 + . . . + βDxD
+
+When predicting:
+• Positive β · x means class is Y
+• Negative β · x means class is N
+• β · x ≈ 0 means most uncertainty
+
+Distribute on a range of 0, 1
+
+P(cj|x1, x2, ..., xD; β) = logistic(β · x) = 1 / 1 + (e^−(β·x)) = hβ(x)
+
+Training a ligistic regression Model
+How do we determine β?
+• Gradient Descent!
+• ... But we need an error function.
+
+P(y = 1|x) = hβ(x) is close to 1, when x
+belongs to the Y class
+
+the probability hβ(x) is close to 0, when x belongs to the N
+class
+
+• But, we have many (independent) training instances (N)!
+• We want to choose β to maximise the likelihood of
+observing our training instances
+
+Maximise the log-likelihood:
+
+Consequently, Gradient Ascent is the preferred strategy for
+choosing β
+
+So far, we have only considered 2-class problems:
+• Multi-class logistic regression:
+• Take one class (“pivot”)
+• For every other class (“Y”), build regression model
+compared to pivot class (“N”)
+• End up with (|C| − 1) different logistic regression models
+• Predict according to the one that has the highest score
+
+Choice of pivot is hopefully irrelevant (assumes comparison
+with irrelevant “pivot” class doesn’t affect preference
+between most-likely and second-most-likely classes)
 
 
+Logistic Regression Pros/Cons
+Pros:
+• Vast improvement on Naive Bayes
+• Particularly suited to frequency-based features (so, popular
+in NLP)
+
+Cons:
+• Slow to train
+• Some feature scaling issues
+• Often needs a lot of data to work well
+• Regularisation a nuisance, but important since overfitting
+can be a big problem
+
+What is hβ(x), and: -> classifier
+• how is it related to probability?
+• how is it used in gradient ascent?
+The most direct approach to classification is empirical risk minimization (ERM). We
+start with a set of classifiers H. Each h ∈ H is a function h : x → {0, 1}. The training error
+or empirical risk is.
+
+
+How can logistic regression be (somewhat painfully)
+extended to multi-class classification?
+
+Logistic regression is the appropriate regression analysis to conduct when 
+the dependent variable is dichotomous (binary).  
+Like all regression analyses, the logistic regression is a predictive analysis.  
+Logistic regression is used to describe data and to explain the relationship 
+between one dependent binary variable and one or more nominal, ordinal, 
+interval or ratio-level independent variables.
 
 -------------------------------------------------------------------------
 
