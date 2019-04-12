@@ -1,12 +1,11 @@
 
 1. What is Discretisation, and where might it be used?
 
-• We have a (continuous) numeric attribute, but we
-tribute.
-• Some learners (like Decision Trees) generally work better with nominal attributes; some datasets inherently have groupings of values that are better represented as distinct.
+• We have a (continuous) numeric attribute, but we atribute.
+• Some learners (like Decision Trees) generally work better with nominal attributes; 
+some datasets inherently have groupings of values that are better represented as distinct.
 
 (a) Summarise some approaches to supervised discretisation.
-
 
 • Our general idea here is to sort the possible values, and create a nominal value for a
 region where most of the instances having the same label.
@@ -60,3 +59,36 @@ How could we use this information when building a classifier over this data?
 • We could construct a Gaussian probability density function, 
 which would allow us to esti- mate the probability of observing any given value, 
 based on counting the number of standard deviations it is from the mean (its z-score).
+
+
+3. If we wished to perform feature selection (or feature weighting -> find how important the feature is
+) on this dataset, where the class is PLAY:
+
+(a) Which of Humi and Wind has the greatest Pointwise Mutual Information (more correlated) for the class Y
+(when it's yes)? What about N (when the class is no)?
+
+*In pointwise mutual info, the second one is the class
+
+log p(h, y) is log of hum = h and play = y
+
+Greatest yes
+PMI(Hum=h, play = y) = log p(h,y) / p(h)p(y) = log (2/6) / (4/6 * 3/6)
+= log 1 = 0
+
+Greatest No
+PMI(wind=T, play=y) = log 0 = -infinity
+
+Humi vs wind
+
+Difference between pointwise MI and MI.
+
+(b) Which of the attributes has the greatest Mutual Information for the class, as a whole? (Note
+that we need to extend the lecture definition to handle non–binary attributes.)
+
+MI(A, C) = sigma sigma PMI(a, c) p(a, c)
+MI(outl, play) = sigma sigma PMI(a,c) p(a,c)
+
+PMI(a, c) p(a, c)
+Do PMI(a, c) p(a, c) for all the classes of the selected attributes and classes and add them up.
+For example, if want to do outl (attribute) and play (class)
+do combinations for all of outl = s, outl = o, outl = r, and play = n, play = y.
