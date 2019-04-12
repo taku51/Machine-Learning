@@ -1,0 +1,62 @@
+
+1. What is Discretisation, and where might it be used?
+
+• We have a (continuous) numeric attribute, but we
+tribute.
+• Some learners (like Decision Trees) generally work better with nominal attributes; some datasets inherently have groupings of values that are better represented as distinct.
+
+(a) Summarise some approaches to supervised discretisation.
+
+
+• Our general idea here is to sort the possible values, and create a nominal value for a
+region where most of the instances having the same label.
+
+(b) Discretise the above dataset according to the (unsupervised) methods of equal width, equal
+frequency, and k-means (breaking ties where necessary).
+
+
+• Equal width divides the range of possible values seen in the training set into equally– sized sub-divisions, regardless of the number of instances (sometimes 0!) in each divi- sion.
+– For attribute C above, the largest value is 1027.0 and the smallest value is 995.4; the difference is 31.6:
+– If we wanted two “buckets”, each bucket would be 15.8 wide, so that instances be- tween 995.4 and 1011.2 take one value (4 and 7), and instances between 1011.2 and 1027.0 take another (1, 2, 3, 5, 6, and 8).
+– If we wanted three “buckets”, each bucket would be about 10.5 wide; so that in- stances between 995.4 and 1005.9 take one value (just 7), instances between 1005.9 and 1016.4 take another value (3, 4, 6, and 8), and instances between 1016.4 and 1027.0 take yet another value (1, 2, and 5).
+• Equal frequency divides the range of possible values seen in the training set, such that (roughly) the same number of instances appear in each bucket.
+– For attribute C above, if we sort the instances in ascending order, we find 7, 4, 3, 8, 6, 5, 1, 2.
+– If we wanted two “buckets”, each bucket would have four instances; so that in- stances 7, 4, 3, and 8 would take one value, and the rest would take the other value.
+– Sometimes, we also need to explicitly define the ranges, in case we obtain new in- stances later that we need to transform. There is some question about the intermedi- ate values (between 1012.8 and 1016.4, in this case); typically, we place the dividing point at the median.
+
+
+
+• k-means is actually a “clustering” approach, but it can work well in this context. If we want k buckets, we randomly choose k points to act as seeds. We then have an iterative approach where we: assign each instance to the bucket of the closest seed; update the “centroid” of the bucket with the mean of the values.
+– For attribute C above, let’s say we begin with two seeds: instance 3 (1012.5, bucket A) and instance 4 (1010.4, bucket B).
+– Instance 1 (1021.2) is closer to A than B; 2 (1027.0) is closer to A; 3 is closer to A; 4 is closer to B; 5 (1019.5) is closer to A; 6 (1016.4) is closer to A; 7 (995.4) is closer to B; 8 (1012.8) is closer to A.
+– We take the average of the values of instances 1, 2, 3, 5, 6, and 8 (1018.2) to be repre- sentative of cluster A, and the average of instances 4 and 7 (1002.9) to be representa- tive of cluster B.
+– Now, we iterate: 1 is still closer to A; 2 is still closer to A; 3 is still closer to A; 4 is still closer to B; 5 is still closer to A; 6 is still closer to A; 7 is still closer to B; 8 is still closer to A.
+– Since this is the same assignment of values to clusters, we stop: instances 4 and 7 will have one value, and the other instances will have another value.
+
+
+2. Find the (sample) mean and (sample) standard deviation1 for the attibutes in the above dataset: (a) In its entirety, and;
+• We have actually already been calculating sample means, in the centroid calculations for k-means.
+• For example, the mean μ of the values of attribute C is determined by summing the values and dividing by the number of values:
+
+
+μc = 1/N sigma ci 
+= 1/8 (1021.2 + 1027.0 + 1012.5 + 1010.4 + 1019.5 + 1016.4 + 995.4 + 1012.8) 
+= 1/8 (8115.2) = 1014.4
+
+
+• The sample standard deviation is calculated by squaring the difference from the sample mean,
+dividing by 1 less than the number of values (this is a little surprising),
+and then taking the (positive) square root:
+
+standard dev = sqrt(sigma(ci −μc)^2 / N-1)
+             ≈ 88.31 ≈ 9.40
+             
+# class is something that we want to find and attributes are information about an instance.
+
+(b) For each individual class^2
+
+How could we use this information when building a classifier over this data?
+
+• We could construct a Gaussian probability density function, 
+which would allow us to esti- mate the probability of observing any given value, 
+based on counting the number of standard deviations it is from the mean (its z-score).
