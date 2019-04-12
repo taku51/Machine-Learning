@@ -10,6 +10,33 @@ some datasets inherently have groupings of values that are better represented as
 • Our general idea here is to sort the possible values, and create a nominal value for a
 region where most of the instances having the same label.
 
+Equal width:
+1, how many buckets? = 2
+2, how to split? [995.4, 1011.2] (1011.2, 1027.0] -> (maximum val - min val) / # buckets
+(1027.0 - 995.4) / 2 # bucket  = 31.6 /2
+3, map instances
+
+Equal Freq:
+1, how many buckets? = 2
+2, sort by attribute values
+e.g.
+995.4, 1010.4, 1012.8, 1016.4...
+1       2         3     4
+Put the first two into bucket 1, and the last two into bucket 2
+and based on this, find the range
+[995.4, (1010.4 + 1012.8)/2) [(1010.4 + 1012.8)/2, 1016.4
+
+KM (same as k nearest neighbour):
+1, how many buckets? = 2
+2, randomly select pivots
+1010.4    1012.5
+Select other instances
+check which one of those centroids is closer to the selected.
+Do this for all the instances.
+
+Then update the centroids (by averaging all the instances put into each bucket)
+If all instances stop moving from one bucket to another, then it's converged and stop the iterations.
+
 (b) Discretise the above dataset according to the (unsupervised) methods of equal width, equal
 frequency, and k-means (breaking ties where necessary).
 
@@ -37,29 +64,34 @@ frequency, and k-means (breaking ties where necessary).
 • We have actually already been calculating sample means, in the centroid calculations for k-means.
 • For example, the mean μ of the values of attribute C is determined by summing the values and dividing by the number of values:
 
+Total
 
-μc = 1/N sigma ci 
+mean = 1/N sigma ci 
 = 1/8 (1021.2 + 1027.0 + 1012.5 + 1010.4 + 1019.5 + 1016.4 + 995.4 + 1012.8) 
 = 1/8 (8115.2) = 1014.4
 
+Just add them up and dvide by # instances.
 
 • The sample standard deviation is calculated by squaring the difference from the sample mean,
 dividing by 1 less than the number of values (this is a little surprising),
 and then taking the (positive) square root:
 
-standard dev = sqrt(sigma(ci −μc)^2 / N-1)
+N = number of instances
+standard dev = sqrt(sigma(ci −μc)^2 / N-1)))
+             = sqrt(sigma(att val - mean val)/N-1)))
              ≈ 88.31 ≈ 9.40
+Don't forget to do -1
              
 # class is something that we want to find and attributes are information about an instance.
 
-(b) For each individual class^2
+(b) For each individual class
+Do the same thing but by class type
 
-How could we use this information when building a classifier over this data?
+(c) How could we use this information when building a classifier over this data?
 
-• We could construct a Gaussian probability density function, 
-which would allow us to esti- mate the probability of observing any given value, 
+• We could construct a Gaussian probability density function with standard deviation and mean, 
+which would allow us to estimate the probability of observing any given value -> estimate the prob of value , 
 based on counting the number of standard deviations it is from the mean (its z-score).
-
 
 3. If we wished to perform feature selection (or feature weighting -> find how important the feature is
 ) on this dataset, where the class is PLAY:
@@ -92,3 +124,5 @@ PMI(a, c) p(a, c)
 Do PMI(a, c) p(a, c) for all the classes of the selected attributes and classes and add them up.
 For example, if want to do outl (attribute) and play (class)
 do combinations for all of outl = s, outl = o, outl = r, and play = n, play = y.
+
+*mutual info should always be positive.
