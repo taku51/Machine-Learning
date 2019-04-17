@@ -1537,12 +1537,157 @@ interval or ratio-level independent variables.
 
 -------------------------------------------------------------------------
 
--------------------------------------------------------------------------
+Classifier Comb (emsemble learning):
+constructs a set of base classifiers from a given set of training data and aggregates the outputs 
+into a single meta-classifier
+
+Motivation 1: the comb of lots of weak classifiers can be at least as good as one strong classifier
+
+Motivation 2:  the combination of a selection of strong
+classifiers is (usually) at least as good as the best of the
+base classifiers
+
+-> why does it work?
+
+ 25 binary base classifiers, each
+with an error rate of = 0.35. Assuming the base classifiers
+are independent and we perform classifier combination by
+voting, the error rate of the combined classifier is:
+
+Multi training datasets -> make a base classifier each
+Approaches: 
+Instance manipulation: generate multiple training
+datasets through sampling, and train a base classifier over
+each
+
+Feature manipulation: generate multiple training
+datasets through different feature subsets, and train a base
+classifier over each
+
+Class label manipulation: generate multiple training
+datasets by manipulating the class labels in a reversible
+manner
+From class to training datasets
+
+Algorithm manipulation: semi-randomly “tweak” internal
+parameters within a given algorithm to generate multiple
+base classifiers over a given dataset
 
 -------------------------------------------------------------------------
 
+Stacking:
+Basic intuition: “smooth” errors over a range of algorithms
+with different biases
+
+• Method 1: simple voting
+presupposes the classifiers have equal performance
+
+• Method 2: train a classifier over the outputs of the base
+classifiers (meta-classification)
+train using nested cross validation to reduce bias
+
+Example: 
+Given training dataset (X, y):
+• Train SVM
+• Train Naive Bayes
+• Train Decision Tree
+
+Discard (or keep) X, add new attributes for each instance:
+• predictions (labels) of the classifiers above
+• other data as available (NB scores, SVM wx + b, etc.)
+
+Train meta-classifier (usually Logistic Regression)
+
+-> mathematically simple but computationally expensive
+-> able to combine heterogeneous classifiers with varying
+performance
+・Generally, stacking results in as good or better results than
+the best of the base classifiers
+• Widely seen in applied research; less interest within
+theoretical circles (esp. statistical learning)
+
 -------------------------------------------------------------------------
+
+Bagging:
+• Basic intuition: the more data, the better the performance
+(lower the variance), so how can we get ever more data out
+of a fixed training dataset?
+
+• Method: construct “novel” datasets through a combination
+of random sampling and replacement
+
+• Randomly sample the original dataset N times, with
+replacement
+
+• Thus, we get a new dataset of the same size, where any
+individual instance is absent with probability (1 − 1/N)^N
+
+• construct k random datasets for k base classifiers, and
+arrive at prediction via voting
+
+Original training dataset:
+1 2 3 4 5 6 7 8 9 10
+
+Bootstrap samples:
+7 2 6 7 5 4 8 8 1 10
+1 3 8 10 3 5 8 10 1 9
+2 9 4 2 7 9 3 10 1 10
+
+• The same (weak) classification algorithm is used throughout
+• As bagging is aimed towards minimising variance through
+sampling, the algorithm should be unstable ( =
+high-variance) ... e.g.?
+
+->
+• Simple method based on sampling and voting
+• Possibility to parallelise computation of individual base
+classifiers
+• Highly effective over noisy datasets (outliers may vanish)
+• Performance is generally significantly better than the base
+classifiers and only occasionally substantially worse
+
 -------------------------------------------------------------------------
+
+A “Random Tree” is a Decision Tree where:
+
+• At each node, only some of the possible attributes are
+considered
+
+• For example, a fixed proportion τ of all of the attributes,
+except the ones used earlier in the tree
+
+• Attempts to control for unhelpful attributes in the feature
+set
+• Much faster to build than a “deterministic” Decision Tree,
+but increases model variance
+
+
+A “Random Forest” is:
+• An ensemble of Random Trees (many trees = forest)
+• Each tree is built using a different Bagged training dataset
+• As with Bagging the combined classification is via voting
+• The idea behind them is to minimise overall model variance,
+without introducing (combined) model bias
+
+Hyperparameters:
+• number of trees B (can be tuned, e.g. based on
+“out-of-bag” error rate)
+• Interpretation:
+• logic behind predictions on individual instances can be
+tediously followed through the various trees
+• logic behind overall model: ???
+
+-> 
+• Generally a very strong performer
+• Embarrassingly parallelisable
+• Surprisingly efficient
+• Robust to overfitting
+• Interpretability sacrificed
+
+-------------------------------------------------------------------------
+
+Boosting:
+
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
