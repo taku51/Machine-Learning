@@ -27,11 +27,9 @@ i = 13 till 25
 
 i is 13 because 13 classifiers are more than half of the total.
 
-What's 
-
-
-
-What's 
+What's logit?
+the logarithm of the odds p/(1 − p) where p is the probability
+It is a type of function that creates a map of probability values from to
 
 
 What's 
@@ -152,19 +150,49 @@ comparing clustering algorithms
 
 hyperparameter tuning of a given clustering algorithm -> # of clusters
 
-
-
 -------------------------------------------------------------
 
+Are loglikelihood and naive bayes the same?
+Yes
 
+Is small difference in centroids between iterations better?
+Yes -> better clustering analysis method
 
-What's 
+What are the two type os clustering?
+Unsupervised: how cohesive are individual clusters/how
+separate is one cluster from other clusters?
 
+Supervised: how well do cluster labels match externally
+supplied class labels?
 
-What's 
+What's a good clustering analysis?
+have one or both of:
 
+high cluster cohesion, i.e. instances in a given cluster
+should be closely related to each other
+1/sigma proximity
 
-What's 
+high cluster separation, i.e. instances in different clusters
+should be distinct from each other
+sigma proximity
+
+How to determine β for regressions?
+Gradient Descent!
+
+How to build a logistic model?
+Choose the best β, which correctly labels as positive or negative, as many test instances as possible.
+-> Maximise log likelihood (naive bayes)
+
+What relationship does linear regression capture?
+a relationship between two variables or
+attributes.
+expressed as y = f (x)
+y = β0 + β1x1 + ... + βDxD
+
+How to fit the linear regression model?
+Operationally, the line that minimises the distance between
+all points and the line.
+Euclidean Distance or mean square which squares the diff
 
 -------------------------------------------------------------
 *linear regression
