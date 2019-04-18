@@ -32,7 +32,9 @@ the logarithm of the odds p/(1 − p) where p is the probability
 It is a type of function that creates a map of probability values from to
 
 
-What's 
+What's Gradient Descent?
+optimization algorithm used to minimize some function by iteratively moving in the direction 
+of steepest descent as defined by the negative of the gradient. 
 
 -------------------------------------------------------------
 
