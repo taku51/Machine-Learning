@@ -75,28 +75,87 @@ What's
 What's 
 -------------------------------------------------------------
 
+Is clustering supervised?
+no. it's unsupervised.
+no explicit or
+implicit definition of class
 
 
-What's 
+What's K-means clustering?
+select random k points or seeds and put instances into the closest centroid group
+update the centroids as the means of the values assigned to each group
+keep doing until it stops changing
 
+What's soft k-means clustering?
+soft (probablistic)
 
-What's 
+-------------------------------------------------------------
+
+What's finite mixture?
+mixed distribution with k component distributions
+used to model the distribution (range) of attribute–value pairs in each cluster
+
+What's Expected Maximisation algo?
+estimation method with guaranteed “positive” hill-climbing characteristics relative to
+the gradient of log-likelihood
+
+Used to estimate (hidden) parameter values or cluster
+membership or find the centroids in other words
+
+How is EM done?
+
+calculate the expected log-likelihood (= E(xpectation)
+step)
+
+compute the new parameter distribution Θn+1 from Θn,
+that maximises the log-likelihood (= M(aximisation)
+step)
+estimate the values of missing values based on features with
+known values
+• estimate the component distributions of two loaded dice
+from a sample set of their sum over N rolls
+
+What's log likelihood?
+gives us an estimate of the “goodness” of the cluster
+model, and is guaranteed to increase on each iteration of
+the algorithm
+
+Convergence can be measured by the relative difference in
+log likelihood from one iteration to the next; once this falls
+below a certain predefined level , we can consider the
+estimate to have converged
+
+What are the adv and disadv of EM?
+Advantages:
+• guaranteed “positive” hill climbing behaviour
+• fast to converge
+• results in probabilistic cluster assignment
+• (relatively) simple but powerful method
+
+Disadvantages:
+• possibility of getting stuck in a local maximum
+• still rely on arbitrary k (but ...)
+• tends to overfit data if “over-trained”
+
+What helps us compare them to work out if one cluster analysis is “better” than another?
+• test data eresults
+• subjective evaluation
+• similarity between clusters over multiple iterations
+
+What are the applications of the clustering evaluation?
+determining the optimal number of clusters for a given
+dataset
+
+evaluating how well the analysis fits the data
+
+comparing clustering algorithms
+
+hyperparameter tuning of a given clustering algorithm -> # of clusters
+
 
 
 -------------------------------------------------------------
 
-What's 
-
-
-What's 
-
-
-What's 
-
-
-What's 
--------------------------------------------------------------
-
 
 
 What's 
@@ -108,7 +167,8 @@ What's
 What's 
 
 -------------------------------------------------------------
-
+*linear regression
+continuous atts -> continuous classes
 -------------------------------------------------------------
 
 -------------------------------------------------------------
