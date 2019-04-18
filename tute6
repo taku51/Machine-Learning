@@ -1,4 +1,68 @@
+1. What is the Gradient Descent method, and why is it important?
 
+
+2. What is Regression? How is it similar to Classification, and how is it different?
+(a) What is Linear Regression? In what circumstances is it desirable, and it what circumstances
+is it undesirable?
+
+
+
+(b) How do we build a (linear) regression model? What is RSS and what advantages does it
+have over (some) alternatives?
+
+
+3. Recall that the update rule for Gradient Descent with respect to RSS is as follows:
+
+Build a Linear Regression model, using the following instances:
+
+
+
+4. What is Logistic Regression?
+• We build a (linear) regression model, where the target is (close to) 1 for instances of the positive class, 
+and (close to) 0 for instance of the negative class. (Suitably re-interpretted for multi-class problems.)
+
+*Logistic regression is the appropriate regression analysis to conduct when the dependent variable is 
+dichotomous (binary).  Like all regression analyses, the logistic regression is a predictive analysis.  Logistic regression is used to describe data and to explain the relationship between one dependent binary variable and one or more nominal, ordinal, interval or ratio-level independent variables.
+Linear regression.
+
+*Linear reg is used when the dependent variable is continuous and nature of the regression line is linear/
+
+(a) How is Logistic Regression similar to Naive Bayes and how is it different? 
+In what circumstances would the former be preferable, and in what circumstances would the latter?
+
+• Effectively, both methods are attempting to find the class c for a test instance T, by maximising P (c|T) -> likelihood.
+
+• In Naive Bayes, we make some simplifying assumptions, most notably, that the attributes 
+are conditionally independent of the class labels. -> p(attributes|class) should be the same as p(attributes), which doesn't usually 
+happen in real life.
+
+Two random variables (a,b) are independent, if
+𝑝(𝑎,𝑏)=𝑝(𝑎)𝑝(𝑏)
+
+or
+
+𝑝(𝑎|𝑏)=𝑝(𝑎)
+such as, championship win(class), weather(att), defense(att)
+
+• In Logistic Regression, we attempt to model this directly, without the simplifying assumptions. 
+This is possible because we don’t attempt to generate the class probabilities; 
+we only attempt to discriminate amongst the various classes.
+
+*linear regression can take values from -infinity to +infinity. But our class probabilities range from 0 to 1. 
+Put simply/blunty a logistic regression model is not a classifier. It is a model for the probability parameter of the binomial distribution. This is why predict() gives probabilities.
+
+In order to make it a classifier you need to specify a function converts probabilities into classes. 
+
+(b) What is “logistic”? What are we “regressing”?
+We typically apply the logistic function 1 to the regression output (β · x), which has
+ 1+e−m
+an easy–to–calculate derivative, and has a range of [0, 1]
+
+1 / 1+e^-x -> logistic function.
+
+(c) How do we train a Logistic Regression model? In particular, what is the significance of the
+following
+argmax sigma yiloghβ(xi)+(1−yi)log(1−hβ(xi))
 
 
 
