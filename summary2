@@ -29,26 +29,52 @@ i is 13 because 13 classifiers are more than half of the total.
 
 What's logit?
 the logarithm of the odds p/(1 − p) where p is the probability
-It is a type of function that creates a map of probability values from to
+It is a type of function that creates a map of probability values
 
 
 What's Gradient Descent?
 optimization algorithm used to minimize some function by iteratively moving in the direction 
 of steepest descent as defined by the negative of the gradient. 
 
+
+
 -------------------------------------------------------------
 
 
-What's 
+What's active learning?
+The main hypothesis in active learning is that if a learning algorithm can choose the data it wants to learn from, 
+it can perform better than traditional methods with substantially less data for training.
 
+What's passive learning?
+Gathering a large amount of data randomly sampled from the underlying distribution 
+and using this large dataset to train a model that can perform some sort of prediction. 
 
-What's 
+One of the more time-consuming tasks in passive learning is collecting labelled data. 
+In many settings, there can be limiting factors that hamper gathering large amounts of labelled data.
 
+What's least confidence?
+in this strategy, the learner selects the instance for which it has the least confidence in its most likely label. 
+Looking at the table, the leaner is pretty confident about the label for d1, 
+since it thinks it should be labelled A with probability 0.9, however, 
+it is less sure about the label of d2 since its probabilities are more spread and 
+it thinks that it should be labelled B with a probability of only 0.5. Thus, using least confidence, 
+the learner would select d2 to query it's actual label.
+-> should learn more about d2 because it's less confident but only look at the highest prob label of each instance
 
-What's 
+What's Margin Sampling?
+the shortcoming of the LC strategy, is that it only takes into consideration the most probable label and 
+disregards the other label probabilities. The margin sampling strategy seeks to overcome this disadvantage by 
+selecting the instance that has the smallest difference between the first and second most probable labels. 
+Looking at d1, the difference (probability) between its first and second most probable labels is 0.81 (0.9 - 0.09) 
+and for d2 it is 0.2 (0.5 - 0.3). Hence, the leaner will select d2 again.
 
+highest minus lowest
+*Each instance has multiple labels
 
-What's 
+What's entropy sampling?
+To utilize all the possible label probabilities/
+The entropy formula is applied to each instance and the instance with the largest value is queried. 
+Using our example, d1 has a value of 0.155 while d2's value is 0.447 and so the learner will select d2 once again.
 
 
 What's 
