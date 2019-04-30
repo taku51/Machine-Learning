@@ -1,23 +1,61 @@
 1. What is the Gradient Descent method, and why is it important?
 
+Gradient Descent is a mechanism for finding the minimum of a (convex) multivariate function, where we can find its partial derivatives.
+• This has numerous applications — most intuitively, in determining the regression weights
+which minimise an error function over some training data set.
 
 2. What is Regression? How is it similar to Classification, and how is it different?
+
+• Our target attribute (class) is nominal in classification, but numeric (continuous) in Regression.
+• Consequently, we can’t exhaustively assess the likelihood of each class.
+
 (a) What is Linear Regression? In what circumstances is it desirable, and it what circumstances
 is it undesirable?
 
-
+• We attempt to build a linear model to predict the target values, by finding a weight for
+each attribute. The prediction is therefore P
+i wiai
+• Many (but not all) relationships can be approximately described by such a model
 
 (b) How do we build a (linear) regression model? What is RSS and what advantages does it
 have over (some) alternatives?
 
+• By learning the weights using Gradient Descent, with respect to an error function.
+• This assumes that our error function is convex — so that there is a unique solution. RSS
+is one popular choice for this: where we attempt to minimise the sum of the squared
+differences between our predicted values and the actual target values from the training
+data.
 
 3. Recall that the update rule for Gradient Descent with respect to RSS is as follows:
 
 Build a Linear Regression model, using the following instances:
 
+Recall that gradient descent:
+– iteratively improves our estimates of the prediction line (according to parameters β)
+– is based on the partial derivatives (which together define the gradient) of the error function (in this case, RSS)
+– tries to find a weight (βk) for each attribute (k ∈ [1..D]), including a dummy attribute
+numbered 0 (known as the “bias”)
+
+
+• We need to specify an initial estimate for the weights — here, I will use yˆ = 0 + 0x. Recall
+that because RSS is convex, the choice of initial estimate shouldn’t affect our overall answer.
+Recall that gradient descent:
+– iteratively improves our estimates of the prediction line (according to parameters β)
+– is based on the partial derivatives (which together define the gradient) of the error function (in this case, RSS)
+– tries to find a weight (βk) for each attribute (k ∈ [1..D]), including a dummy attribute
+numbered 0 (known as the “bias”)
+
+• We need to specify an initial estimate for the weights — here, I will use yˆ = 0 + 0x. Recall
+that because RSS is convex, the choice of initial estimate shouldn’t affect our overall answer.
+
+
+• We also need to choose the learning rate α; here we will say α = 0.05
+• Skipping the workings, our update rule for each βk is based on the error of our prediction yˆ
+for each instance (yi − yˆi):
 
 
 4. What is Logistic Regression?
+
 • We build a (linear) regression model, where the target is (close to) 1 for instances of the positive class, 
 and (close to) 0 for instance of the negative class. (Suitably re-interpretted for multi-class problems.)
 
@@ -64,5 +102,8 @@ an easy–to–calculate derivative, and has a range of [0, 1]
 following
 argmax sigma yiloghβ(xi)+(1−yi)log(1−hβ(xi))
 
-
+• This is a confusing way of stating that we want the output of the linear regression to be
+(very) positive when the target class is 1, and (very) negative when the target class is 0.
+• We want to choose a set of parameters β which maximises this objective function; we use
+Gradient Ascent to find them.
 
