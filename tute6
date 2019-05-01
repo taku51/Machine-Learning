@@ -13,15 +13,15 @@ which minimise an error function over some training data set.
 is it undesirable?
 
 • We attempt to build a linear model to predict the target values, by finding a weight for
-each attribute. The prediction is therefore P
-i wiai
+each attribute. The prediction is therefore sigma weight attribute -> sum (weight * each attribute)
+
 • Many (but not all) relationships can be approximately described by such a model
 
 (b) How do we build a (linear) regression model? What is RSS and what advantages does it
 have over (some) alternatives?
 
 • By learning the weights using Gradient Descent, with respect to an error function.
-• This assumes that our error function is convex — so that there is a unique solution. RSS
+• This assumes that our error function is convex (polynomial) — so that there is a unique solution. RSS
 is one popular choice for this: where we attempt to minimise the sum of the squared
 differences between our predicted values and the actual target values from the training
 data.
@@ -87,13 +87,13 @@ This is possible because we don’t attempt to generate the class probabilities;
 we only attempt to discriminate amongst the various classes.
 
 *linear regression can take values from -infinity to +infinity. But our class probabilities range from 0 to 1. 
-Put simply/blunty a logistic regression model is not a classifier. It is a model for the probability parameter of the binomial distribution. This is why predict() gives probabilities.
+Put simply/blunty a logistic regression model is not a classifier (gives a val but can't classify). 
+It is a model for the probability parameter of the binomial distribution. This is why predict() gives probabilities.
 
 In order to make it a classifier you need to specify a function converts probabilities into classes. 
 
 (b) What is “logistic”? What are we “regressing”?
-We typically apply the logistic function 1 to the regression output (β · x), which has
- 1+e−m
+We typically apply the logistic function 1 /  1+e−m to the regression output (β · x), which has
 an easy–to–calculate derivative, and has a range of [0, 1]
 
 1 / 1+e^-x -> logistic function.
@@ -103,7 +103,7 @@ following
 argmax sigma yiloghβ(xi)+(1−yi)log(1−hβ(xi))
 
 • This is a confusing way of stating that we want the output of the linear regression to be
-(very) positive when the target class is 1, and (very) negative when the target class is 0.
+(very) positive when the target class is 1, and (very) negative when the target class is 0. -> accurate
 • We want to choose a set of parameters β which maximises this objective function; we use
 Gradient Ascent to find them.
 
