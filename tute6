@@ -27,18 +27,13 @@ differences between our predicted values and the actual target values from the t
 data.
 
 3. Recall that the update rule for Gradient Descent with respect to RSS is as follows:
+Betai+1 := Beta i + 2alpha Sigma x (y - mean (y))
+Beta is weight, it depends on how far from the mean val
 
 Build a Linear Regression model, using the following instances:
+x 1 2 2
+y 1 2 3
 
-Recall that gradient descent:
-– iteratively improves our estimates of the prediction line (according to parameters β)
-– is based on the partial derivatives (which together define the gradient) of the error function (in this case, RSS)
-– tries to find a weight (βk) for each attribute (k ∈ [1..D]), including a dummy attribute
-numbered 0 (known as the “bias”)
-
-
-• We need to specify an initial estimate for the weights — here, I will use yˆ = 0 + 0x. Recall
-that because RSS is convex, the choice of initial estimate shouldn’t affect our overall answer.
 Recall that gradient descent:
 – iteratively improves our estimates of the prediction line (according to parameters β)
 – is based on the partial derivatives (which together define the gradient) of the error function (in this case, RSS)
@@ -48,11 +43,39 @@ numbered 0 (known as the “bias”)
 • We need to specify an initial estimate for the weights — here, I will use yˆ = 0 + 0x. Recall
 that because RSS is convex, the choice of initial estimate shouldn’t affect our overall answer.
 
+Recall that gradient descent:
+– iteratively improves our estimates of the prediction line (according to parameters β)
+– is based on the partial derivatives (which together define the gradient) of the error function (in this case, RSS)
+– tries to find a weight (βk) for each attribute (k ∈ [1..D]), including a dummy attribute
+numbered 0 (known as the “bias”)
 
-• We also need to choose the learning rate α; here we will say α = 0.05
+• We need to specify an initial estimate for the weights — here, I will use yˆ = 0 + 0x. Recall
+that because RSS is convex, the choice of initial estimate shouldn’t affect our overall answer.
+
+
+• We also need to choose the learning rate α; here we will say α = 0.05 (the more it learns, the better it gets)
 • Skipping the workings, our update rule for each βk is based on the error of our prediction yˆ
 for each instance (yi − yˆi):
 
+y^ is not mean but the line
+Putting vals into yˆ = 0 + 0x
+– for the first point, we predict yˆ1 = 0(1) + 0 = 0, but we have y1 = 1 (so the error is +1)
+– for the second point, we predict yˆ2 = 0(2) + 0 = 0, but we have y1 = 2 (so the error is +2)
+– for the third point, we predict yˆ3 = 0(2) + 0 = 0, but we have y1 = 3 (so the error is +3)
+
+Putting these into Betai+1 := Beta i + 2alpha Sigma x (y - mean (y))
+β0 = 0 + 2(0.05)[(1)(1 − 0) + (1)(2 − 0) + (1)(3 − 0)] = 0.6 -> x
+β1 = 0 + 2(0.05)[(1)(1 − 0) + (2)(2 − 0) + (2)(3 − 0)] = 1.1 -> y
+
+We can see now that this line (yˆ = 1.1x+0.6) is an improvement
+for the first point, we predict yˆ1 = 1.1(1) + 0.6 = 1.7, but we have y1 = 1 (so the error is
+−0.7)
+for the second point, we predict yˆ2 = 1.1(2) + 0.6 = 2.8, but we have y1 = 2 (so the error
+is −0.8)
+for the third point, we predict yˆ3 = 1.1(2) + 0.6 = 2.8, but we have y1 = 3 (so the error is
++0.2)
+
+The first line could be anything.
 
 4. What is Logistic Regression?
 
