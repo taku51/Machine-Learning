@@ -200,13 +200,67 @@ Euclidean Distance or mean square which squares the diff
 *linear regression
 continuous atts -> continuous classes
 
-What's 
+What's short text location identification?
+Difficult
+Don't know how to solve it
+ML can bridge the gap
+Use text to identify locations
+
+What's baseline location classifier?
+Bag(multiset) of words
+Features: word freq, metadata
+Most words are uninformative to the location.
+Many different locs -> ML becomes difficult and slow.
+E.g. do people in Melbourne use the more -> maybe not
 
 
-What's 
+How to improve the baseline?
+-Choose the features more carefully
+-document preprocessing
+-use grammatical struct
+  - through NLP techniques
+  - word seqs
+Model the instances as authors insetead of documents
+Collect more data
+
+What's intepretation of models?
+Even if you get 90% accuracy in your classifier, explanations and interpretations should most of the time be provided.
+e.g. this causes cancer? but why?
+
+What's Error analysis?
+analysis of the sorts of errors that a given model makes
+
+How's error analysis done?
+Identify diff classes of error
+hypothesising as to what has caused those errors and testing those hypo against the actual data
+
+What's Model Interpretability?
+How classifiers are making predictions
+Undestand what a model is: in terms of hyper param and param
+
+What are parameters?
+used to classify test instances. what is learned with a set of hyper param.
+
+What are Hyperparam, param and interepretation in Nearest Neightbour Classifiers?
+Hyperparam: dist, k, weighting
+Param: none because the model is lazy and doesn't abstract away from the training set.
+Interepetation: relative to the geometric disto of the prototypes and dist to each for a given test instance.
+
+What are Hyperparam, param and interepretation in NB Classifiers?
+Hyperparam: smoothing method
+Param: priors and conditional prob for each featrure
+Intepretation: the most positively weighted features associated with a given instance
 
 
-What's
+What are Hyperparam, param and interepretation in DT Classifiers?
+hyperparam: choice of func
+Param: the tree itslef
+Interepretation: based on the path through the decision tree
+
+What are Hyperparam, param and interepretation in SVM Classifiers?
+Hyperparam: feature value scaling, kernel
+Param: vector of feature weights + bias term
+Interpretation: the absolute value of the weight associated with each non-zero 
 
 -------------------------------------------------------------
 
