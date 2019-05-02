@@ -1,3 +1,27 @@
+Proj 1:
+Q1:
+1, In NB, more classes, worse perfo'
+CMC has a lower info gain than mashroom -> atts don't tell much about the class
+
+2, hypothroid -> high accuracy but low info gain, low entropy
+-> accuracy is not important
+
+Q2:
+Attribute independencies in NB.
+car -> four class
+Accuracy is high but IG is not
+
+Q3:
+NB vs 1-R
+ car perform better with NB than 1-R because NB can take more atts into account.
+ 
+Q4:
+More instances -> better model.
+data holdout: lower acc, depends on the size of split and smoothing
+
+NB doesn't change much 
+
+
 What's classifier comb?
 combining results obtained from a set of classifiers to achieve higher performance than each single classifier.
 
@@ -264,12 +288,16 @@ Interpretation: the absolute value of the weight associated with each non-zero
 
 -------------------------------------------------------------
 
+What's dimensionality reduction?
+Can use it to reduce feature dimensions to make it more graphable.
+e.g. feature selection, PCA
 
+What's the downside of DR?
+always lossy
+cannot reproduce the original data.
 
-What's 
+What's PCA?
 
-
-What's 
 
 
 What's 
