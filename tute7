@@ -9,14 +9,45 @@ D 1 2 1 7 COMP
 E 2 0 3 1 ?
 F 1 0 1 0 ?
 
+
+In a supervised learning model, the algorithm learns on a labeled dataset, 
+providing an answer key that the algorithm can use to evaluate its accuracy on training data. 
+An unsupervised model, in contrast, provides unlabeled data that 
+the algorithm tries to make sense of by extracting features and patterns on its own.
+
+
 2. Treat the problem as an unsupervised machine learning problem (excluding the id and LABEL
 attributes), and calculate the clusters according to (hard) k-means with k = 2, using the Manhattan
 distance:
 (a) Using seeds A and D.
+
 (b) Using seeds A and F.
 
 
+A: 4, 0, 1, 1
+F: 1, 0, 1, 0
+
+Once classify instances into either one of these centroids based on distance, recalculate the centroids 
+by taking the mean vals of instances in each of the centroids. Repeat these steps until there's no change
+in the assignment of instances.
+
 3. Repeat the previous question using “soft” k-means, with a “stiffness” β = 1.
+When B is small, can ignore the difference between cluster 1 & 2
+
+Soft k means instead uses to update the centroids
+z1 = e^- B * c1val / (e^ B * c1val + e^ B * c2val)
+z2 = e^- B * c2val / (e^ B * c1val + e^ B * c2val)
+
+Multiply each instance vals by their corresponding z1s and z2s, and then divide it by the sum of those instance vals
+
+
+  c1    c2      z1      z2 
+A 0     4       e^- B * 0 / (e^ B * -0 + e^ B * -4) = 9
+B 6     10
+C 9     7
+D 11     9
+E 4     4
+F 4     0
 
 
 
