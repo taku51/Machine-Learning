@@ -49,12 +49,14 @@ D 11     9
 E 4     4
 F 4     0
 
-
-
-4. What is logic behind the EM algorithm, when used for clustering?
+4. What is logic behind the EM (expectation maximisation) algorithm, when used for clustering?
 (a) Explain the significance of the “E” step, and the “M” step.
 
+Expectation: randomly assign labels and build a loglikelihood model
+Maximisation: use that model to assign labels again
+And keep repeating these steps.
 
+It's unsupervised learning so it cannot assign the correct labels.
 
 5. What is semi–supervised learning, and when is it desirable?
 (a) What is self training?
