@@ -59,14 +59,46 @@ And keep repeating these steps.
 It's unsupervised learning so it cannot assign the correct labels.
 
 5. What is semi–supervised learning, and when is it desirable?
+
+semi-supervised learning algorithms are trained on a combination of labeled and unlabeled data. 
+This is useful for a few reasons. First, the process of labeling massive amounts of data for 
+supervised learning is often prohibitively time-consuming and expensive. What’s more, 
+too much labeling can impose human biases on the model. That means including lots of 
+unlabeled data during the training process actually tends to improve the accuracy of the 
+final model while reducing the time and cost spent building it.
+
+Used for webpage classification, speech recognition, or even for genetic sequencing.
+
 (a) What is self training?
+Self-Directed Training refers to the form of training where the learner 
+takes responsibility for managing their own training, from the content 
+they select to timing and delivery.
+
+If you want to do Supervised Learning, you've to create a data-set to train. 
+It's not always an easy task to create a huge data-set. 
+So, here Reinforcement Learning comes into the picture, where an agent learns entirely by itself.
+
+NB, SVM: supervised method
+
 (b) What is the logic behind active learning, and what are some methods to choose instances for
 the oracle?
 
+The main hypothesis in active learning is that if a learning algorithm can choose the 
+data it wants to learn from, it can perform better than traditional methods with 
+substantially less data for training.
 
+-> ignores instances it's not confident with.
 
+Membership Query Synthesis: his is a big term which simply means that the learner generates/constructs 
+an instance (from some underlying natural distribution). 
+For example, if the data is pictures of digits, the learner would create an image that 
+is similar to a digit (it might be rotated or some piece of the digit excluded) and 
+this created image is sent to the oracle to label.
 
+Stream-Based Selective Sampling: in this setting, you make the assumption that getting an 
+unlabelled instance is free. Based on this assumption, you then select each unlabelled 
+instance one at a time and allow the learner to determine whether it wants to query the 
+label of the instance or reject it based on its informativeness. 
 
-
-
+Select informative instances.
 
