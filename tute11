@@ -1,7 +1,29 @@
+Markov Models: the probability of each event depends only on the state attained in the previous event.
+A Markov chain makes a very strong assumption that if we want to predict the future in the sequence, all that
+matters is the current state.
+
+The states before the current state have no impact on the
+future except via the current state. It’s as if to predict tomorrow’s weather you could
+examine today’s weather but you weren’t allowed to look at yesterday’s weather.
+
+Hidden Markov Models:
+In many cases, however, the events we are interested in are
+hidden hidden: we don’t observe them directly. For example we don’t normally observe
+part-of-speech tags in a text. Rather, we see words, and must infer the tags from the
+word sequence. We call the tags hidden because they are not observed.
+
+ hidden Markov model (HMM) allows us to talk about both observed events Hidden
+Markov model
+(like words that we see in the input) and hidden events (like part-of-speech tags) that
+we think of as causal factors in our probabilistic model.
+
+------------------------------------------------------------------------
+
 
 1. Hidden Markov Models (HMMs) are best used when the observables are a univariate time series:
 we are just observing a single variable, which changes over time due to some factor that can be
 estimated from previous observations.
+
 (a) Recall the two main assumptions (Markov, output independence) that are built into an HMM.
 • Markov assumption: the likelihood of transitioning into a given state depends only
 on the current state, and not the previous state(s) (or output(s)), i.e. P(qi|q1 · · · qi−1) ≈ P(qi|qi−1)
@@ -16,6 +38,7 @@ model look like, and what is the major downside?
 • Well, we could have pairs of states in the conditions for our transition probability matrix
 A, and pairs of states in the conditions for our output proabability matrix B, but this will
 vastly increase the number of parameters in the model.
+
 (c) Could we build an HMM for a multivariate time series, where we have a number of observed variables for a given (hidden) state?
 
 • We could represent the outputs as a tuple, again at the cost of vastly increasing the number of parameters. However, sometimes coupling the outputs like this is unnecessary; it
