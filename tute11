@@ -17,10 +17,13 @@ Markov model
 (like words that we see in the input) and hidden events (like part-of-speech tags) that
 we think of as causal factors in our probabilistic model.
 
+A univariate time series is a sequence of measurements of the same variable collected over time. 
+Most often, the measurements are made at regular time intervals.
+
 ------------------------------------------------------------------------
 
 
-1. Hidden Markov Models (HMMs) are best used when the observables are a univariate time series:
+1. Hidden Markov Models (HMMs) are best used when the observables are a univariate time series (same variable collected over time regularly):
 we are just observing a single variable, which changes over time due to some factor that can be
 estimated from previous observations.
 
@@ -29,20 +32,22 @@ estimated from previous observations.
 on the current state, and not the previous state(s) (or output(s)), i.e. P(qi|q1 · · · qi−1) ≈ P(qi|qi−1)
 
 • Output independence assumption: the likelihood of a state producing a certain observation (as output) does not depend on the preceding (or following) state(s) (or output(s)),
-i.e P(oi|q1 · · · qi, o1 · · · oi−1) ≈ P(oi|qi)
-
+i.e for P(oi|q1 · · · qi, o1 · · · oi−1) ≈ qi is only dependent on qi-1 P(oi|qi)
+-> outputs do not depend on their following output.
 
 (b) Could we construct the HMM in such a way to relax these assumptions? What would the
 model look like, and what is the major downside?
 
-• Well, we could have pairs of states in the conditions for our transition probability matrix
+• We could have pairs of states in the conditions for our transition probability matrix
 A, and pairs of states in the conditions for our output proabability matrix B, but this will
-vastly increase the number of parameters in the model.
+vastly increase the number of parameters in the model. -> passing information from the previous states.
+-> making it multi variate, more parameters/variables
 
 (c) Could we build an HMM for a multivariate time series, where we have a number of observed variables for a given (hidden) state?
 
-• We could represent the outputs as a tuple, again at the cost of vastly increasing the number of parameters. However, sometimes coupling the outputs like this is unnecessary; it
-might be possible to just generate independent HMMs for each output.
+• We could represent the outputs as a tuple, again at the cost of vastly increasing the number of parameters. However, 
+sometimes coupling the outputs like this is unnecessary; it might be possible to just generate independent HMMs for each output.
+Geenrate HMMs for each output.
 
 2. Natural language processing is one common application for HMMs: we have a single observation (a “word”) that varies over time (a “sentence” or “document”), where each observation is
 associated with some property (like “part of speech”).
