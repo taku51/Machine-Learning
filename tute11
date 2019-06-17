@@ -1,7 +1,7 @@
 Markov Models: the probability of each event depends only on the state attained in the previous event.
 A Markov chain makes a very strong assumption that if we want to predict the future in the sequence, all that
 matters is the current state.
-
+xxx
 The states before the current state have no impact on the
 future except via the current state. It’s as if to predict tomorrow’s weather you could
 examine today’s weather but you weren’t allowed to look at yesterday’s weather.
