@@ -1,0 +1,133 @@
+week 12
+
+Markov Models: the probability of each event depends only on the state attained in the previous event.
+A Markov chain makes a very strong assumption that if we want to predict the future in the sequence, all that
+matters is the current state.
+xxx
+The states before the current state have no impact on the
+future except via the current state. It’s as if to predict tomorrow’s weather you could
+examine today’s weather but you weren’t allowed to look at yesterday’s weather.
+
+Hidden Markov Models:
+In many cases, however, the events we are interested in are
+hidden hidden: we don’t observe them directly. For example we don’t normally observe
+part-of-speech tags in a text. Rather, we see words, and must infer the tags from the
+word sequence. We call the tags hidden because they are not observed.
+
+ hidden Markov model (HMM) allows us to talk about both observed events Hidden
+Markov model
+(like words that we see in the input) and hidden events (like part-of-speech tags) that
+we think of as causal factors in our probabilistic model.
+
+A univariate time series is a sequence of measurements of the same variable collected over time. 
+Most often, the measurements are made at regular time intervals.
+
+------------------------------------------------------------------------
+
+
+1. Hidden Markov Models (HMMs) are best used when the observables are a univariate time series (same variable collected over time regularly):
+we are just observing a single variable, which changes over time due to some factor that can be
+estimated from previous observations.
+
+(a) Recall the two main assumptions (Markov, output independence) that are built into an HMM.
+• Markov assumption: the likelihood of transitioning into a given state depends only
+on the current state, and not the previous state(s) (or output(s)), i.e. P(qi|q1 · · · qi−1) ≈ P(qi|qi−1)
+
+• Output independence assumption: the likelihood of a state producing a certain observation (as output) does not depend on the preceding (or following) state(s) (or output(s)),
+i.e for P(oi|q1 · · · qi, o1 · · · oi−1) ≈ qi is only dependent on qi-1 P(oi|qi)
+-> outputs do not depend on their following output.
+
+(b) Could we construct the HMM in such a way to relax these assumptions? What would the
+model look like, and what is the major downside?
+
+• We could have pairs of states in the conditions for our transition probability matrix
+A, and pairs of states in the conditions for our output proabability matrix B, but this will
+vastly increase the number of parameters in the model. -> passing information from the previous states.
+-> making it multi variate, more parameters/variables
+
+(c) Could we build an HMM for a multivariate time series, where we have a number of observed variables for a given (hidden) state?
+
+• We could represent the outputs as a tuple, again at the cost of vastly increasing the number of parameters. However, 
+sometimes coupling the outputs like this is unnecessary; it might be possible to just generate independent HMMs for each output.
+Geenrate HMMs for each output.
+
+2. Natural language processing is one common application for HMMs: we have a single observation (a “word”) that varies over time (a “sentence” or “document”), where each observation is
+associated with some property (like “part of speech”).
+
+Consider the following HMM: Π[J, N, V] = [0.3, 0.4, 0.3]
+A J N V
+J 0.4 0.5 0.1
+N 0.1 0.4 0.5
+V 0.4 0.5 0.1
+B brown leaves turn
+J 0.8 0.1 0.1
+N 0.3 0.4 0.3
+V 0.1 0.3 0.6
+
+(a) How might we go about obtaining the values in the matrices Π, A, and B given above, in a
+supervised context?
+
+• Each element aij of A is the count of how many times the state sequence i, j was observed
+in the labelled data, out of the number of times the state i was observed. In this case, this
+is a pair of part–of–speech tags.
+
+• Each element bik of A is the count of how many times the observation k was observed
+labelled with state i in the training data, out of the number of times the state i was
+observed. In this case, this is a word being labelled as the equivalent part–of–speech.
+
+• Each element πi
+is the count of how many times state i was the start of an observation
+sequence, out of the number of observation sequences. In this case, this is where some
+part–of–speech starts a sentence.
+
+(b) Use the forward algorithm to find the probability of the “sentence” brown leaves turn.
+
+• See overleaf.
+
+• The overall probability can be obtained by summing the values in the final column:
+0.002256 + 0.014499 + 0.024246 = 0.041001
+
+
+(c) Use the Viterbi algorithm to find the most likely state sequence for the sentence brown
+leaves turn.
+
+• See below, and overleaf.
+
+• The most likely tag sequence can be read right-to-left, based upon the maximum probability we’ve observed: in this case, 0.0144 when turn is a V; this value is derived from the
+N → V transition, so we can infer that leaves is an N; that in turn comes from the J → N
+transition, so brown is a J.
+
+
+
+
+-------------------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------
+
+
