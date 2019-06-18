@@ -1,20 +1,33 @@
 week 12
 
-Markov Models: the probability of each event depends only on the state attained in the previous event.
+Corpus -> a chunk of words
+
+Curse of dimensionality -> as the number of dimensions increase, size of memory and time increase exponentially.
+
+Lemma -> word
+
+Lemmatisation -> meeting -> meet
+
+POS tagging -> marking up a word in a corpus to a corresponding part of a speech tag, based on its context and definition.
+e.g. "give me your answer", answer is a Noun, but in the sentence "answer the question", answer is a verb.
+
+To understand the meaning of any sentence or to extract relationships and build a knowledge graph, POS Tagging is a very important step
+
+Markov Models -> the probability of each event depends only on the state attained in the previous event (not the ones before or after).
 A Markov chain makes a very strong assumption that if we want to predict the future in the sequence, all that
-matters is the current state.
-xxx
+matters is the current state. -> formula always includes the previous state.
+
 The states before the current state have no impact on the
 future except via the current state. It’s as if to predict tomorrow’s weather you could
 examine today’s weather but you weren’t allowed to look at yesterday’s weather.
 
 Hidden Markov Models:
 In many cases, however, the events we are interested in are
-hidden hidden: we don’t observe them directly. For example we don’t normally observe
+hidden -> we don’t observe them directly. For example we don’t normally observe
 part-of-speech tags in a text. Rather, we see words, and must infer the tags from the
 word sequence. We call the tags hidden because they are not observed.
 
- hidden Markov model (HMM) allows us to talk about both observed events Hidden
+ hidden Markov model (HMM) allows to talk about both observed events Hidden
 Markov model
 (like words that we see in the input) and hidden events (like part-of-speech tags) that
 we think of as causal factors in our probabilistic model.
